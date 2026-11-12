@@ -1,5 +1,7 @@
 const gateway = "https://ai-gateway.vercel.sh/v1/chat/completions";
 const modelo = "google/gemini-2.5-flash-lite";
+const geminiDireto =
+  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent";
 const assuntos = new Set([
   "projetos",
   "bi",
@@ -86,6 +88,50 @@ async function lerPergunta(request) {
   }
 }
 
+function consultarModelo(entrada, chave, token) {
+  const signal = AbortSignal.timeout(9000);
+  if (chave) {
+    return fetch(geminiDireto, {
+      method: "POST",
+      headers: { "x-goog-api-key": chave, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        systemInstruction: { parts: [{ text: contexto }] },
+        contents: [{ role: "user", parts: [{ text: entrada }] }],
+        generationConfig: {
+          maxOutputTokens: 320,
+          responseMimeType: "application/json",
+          responseJsonSchema: esquema,
+        },
+      }),
+      signal,
+    });
+  }
+  return fetch(gateway, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: modelo,
+      messages: [
+        { role: "system", content: contexto },
+        { role: "user", content: entrada },
+      ],
+      max_tokens: 320,
+      response_format: {
+        type: "json_schema",
+        json_schema: {
+          name: "resposta_portfolio",
+          strict: true,
+          schema: esquema,
+        },
+      },
+    }),
+    signal,
+  });
+}
+
 export default {
   async fetch(request) {
     if (request.method !== "POST") {
@@ -107,8 +153,11 @@ export default {
       return responder(400, { erro: "pergunta" });
     }
 
+    const chave = process.env.GEMINI_API_KEY;
     const token = request.headers.get("x-vercel-oidc-token");
-    if (!token) return responder(503, { erro: "credencial_indisponivel" });
+    if (!chave && !token) {
+      return responder(503, { erro: "credencial_indisponivel" });
+    }
     const historico = Array.isArray(dados.historico)
       ? dados.historico
           .slice(-3)
@@ -124,40 +173,26 @@ export default {
     }));
 
     try {
-      const resposta = await fetch(gateway, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model: modelo,
-          messages: [
-            { role: "system", content: contexto },
-            { role: "user", content: JSON.stringify({ conversa, pergunta }) },
-          ],
-          max_tokens: 320,
-          response_format: {
-            type: "json_schema",
-            json_schema: {
-              name: "resposta_portfolio",
-              strict: true,
-              schema: esquema,
-            },
-          },
-        }),
-        signal: AbortSignal.timeout(9000),
-      });
+      const resposta = await consultarModelo(
+        JSON.stringify({ conversa, pergunta }),
+        chave,
+        token,
+      );
       const payload = await resposta.json();
       if (!resposta.ok) {
         console.warn(
-          "Falha no AI Gateway",
+          "Falha no provedor de IA",
           resposta.status,
-          payload.error?.type,
+          payload.error?.type ?? payload.error?.status,
         );
         return responder(503, { erro: "provedor_indisponivel" });
       }
-      const resultado = JSON.parse(payload.choices[0].message.content);
+      const conteudo = chave
+        ? payload.candidates?.[0]?.content?.parts?.find(
+            (parte) => parte.text && !parte.thought,
+          )?.text
+        : payload.choices?.[0]?.message?.content;
+      const resultado = JSON.parse(conteudo);
       const texto =
         typeof resultado.texto === "string" ? resultado.texto.trim() : "";
       if (!texto || texto.length > 550 || !assuntos.has(resultado.assunto)) {
