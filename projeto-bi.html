@@ -1,0 +1,941 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="object-src 'none'; base-uri 'none'; form-action 'none'; connect-src 'none'; frame-src 'none'"
+    />
+    <meta
+      name="description"
+      content="Radar de Vendas, projeto demonstrativo de Business Intelligence de Lukas Martins Oliveira com indicadores de e-commerce, metas e filtros interativos."
+    />
+    <title>Radar de Vendas | Portfólio de Lukas Martins</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2054%2026%22%20fill%3D%22none%22%3E%0A%20%20%3Crect%20width%3D%2254%22%20height%3D%2226%22%20rx%3D%225%22%20fill%3D%22%23080910%22%2F%3E%3Cpath%20d%3D%22M4%205v13.5l3%203h13M27%2021.5V5l11.5%2010L50%205v16.5%22%20stroke%3D%22%23f7f8ff%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%20%20%3Cpath%20d%3D%22m20%2021.5%204-4%22%20stroke%3D%22%23a879ef%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E"
+    />
+    <meta name="theme-color" content="#101626" />
+    <script src="tema-portfolio.js"></script>
+    <link rel="stylesheet" href="tema-portfolio.css" />
+    <style>
+      :root {
+        color-scheme: dark;
+        --teal: #57d2da;
+        --lilac: #d8c5f5;
+        --green: #63d7ae;
+        --amber: #f2be74;
+      }
+      :root[data-theme="light"] {
+        color-scheme: light;
+        --teal: #147d85;
+        --lilac: #9a70ba;
+        --green: #187859;
+        --amber: #995b0d;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--page);
+        color: var(--text);
+        font: 15px/1.5 var(--sans);
+      }
+      h1,
+      h2,
+      p,
+      dl,
+      dd,
+      ul {
+        margin: 0;
+      }
+      a {
+        color: inherit;
+      }
+      button {
+        font: inherit;
+      }
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 4px;
+      }
+      .wrap {
+        width: min(84.5vw, 1412px);
+        margin-inline: auto;
+      }
+      .icon {
+        width: 18px;
+        height: 18px;
+        flex: none;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.7;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .icon-library {
+        position: absolute;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+      }
+      main {
+        padding-block: 16px 36px;
+      }
+      .intro {
+        position: relative;
+        isolation: isolate;
+        padding: clamp(20px, 3vw, 42px) 0 22px;
+      }
+      .intro::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        background: radial-gradient(
+          ellipse 37% 50% at 63% 50%,
+          var(--card-glow),
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+      .intro::after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        inset: 0 0 0 52%;
+        background-image:
+          linear-gradient(var(--line) 1px, transparent 1px),
+          linear-gradient(90deg, var(--line) 1px, transparent 1px);
+        background-size: 24px 24px;
+        mask-image: radial-gradient(ellipse, #000, transparent 71%);
+        pointer-events: none;
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+        color: var(--accent);
+        font-size: 11px;
+        font-weight: 750;
+        letter-spacing: 0.05em;
+      }
+      .eyebrow::before {
+        content: "";
+        width: 24px;
+        height: 1px;
+        background: currentColor;
+        box-shadow: 0 0 10px currentColor;
+      }
+      h1 {
+        font-size: clamp(2.2rem, 5.05vw, 4.6rem);
+        line-height: 1;
+        font-weight: 760;
+        letter-spacing: -0.05em;
+      }
+      h1 span {
+        color: var(--name-end);
+        background: linear-gradient(106deg, var(--name-start), var(--name-end));
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .intro-description {
+        max-width: 60ch;
+        margin-top: 11px;
+        color: var(--muted);
+      }
+      .analysis-filters {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px 18px;
+        margin-bottom: 12px;
+        padding: 10px 15px;
+      }
+      .analysis-filters h2 {
+        font-size: 15px;
+        font-weight: 730;
+      }
+      .analysis-filters p {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .filters {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+      .filters label {
+        display: grid;
+        gap: 4px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 650;
+      }
+      select {
+        width: 100%;
+        min-width: 154px;
+        min-height: 42px;
+        padding-inline: 9px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: var(--text);
+        background: var(--surface-raised);
+        font: inherit;
+        font-size: 13px;
+      }
+      select:hover {
+        border-color: var(--accent);
+      }
+      .kpis,
+      .charts {
+        display: grid;
+        gap: 12px;
+      }
+      .kpis {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        margin-bottom: 12px;
+      }
+      .charts {
+        grid-template-columns: minmax(0, 1.63fr) minmax(0, 1fr);
+      }
+      .panel {
+        min-width: 0;
+        border: 1px solid var(--line);
+        border-radius: 13px;
+        background: var(--surface);
+      }
+      .kpi {
+        display: grid;
+        gap: 6px;
+        padding: 13px 15px;
+      }
+      .kpi dt,
+      .kpi dd {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 4px;
+      }
+      .kpi dt {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 650;
+      }
+      .kpi-icon {
+        display: grid;
+        place-items: center;
+        width: 28px;
+        height: 28px;
+        flex: none;
+        border-radius: 7px;
+        background: var(--surface-raised);
+        color: var(--accent);
+      }
+      .kpi-icon .icon {
+        width: 15px;
+        height: 15px;
+      }
+      .kpi-value {
+        font-size: clamp(1.3rem, 2.2vw, 1.85rem);
+        font-weight: 760;
+        line-height: 1.12;
+        letter-spacing: -0.055em;
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums;
+      }
+      .kpi-note {
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .kpi-note[data-goal="above"] {
+        color: var(--green);
+      }
+      .kpi-note[data-goal="below"] {
+        color: var(--amber);
+      }
+      .spark {
+        width: min(29%, 70px);
+        height: 24px;
+        color: var(--accent);
+      }
+      .chart-panel {
+        padding: 16px 18px;
+      }
+      .chart-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        flex-wrap: wrap;
+        gap: 4px 12px;
+        margin-bottom: 12px;
+      }
+      .chart-header h2,
+      .insight h2 {
+        font-size: 1rem;
+        font-weight: 730;
+        letter-spacing: -0.02em;
+      }
+      .chart-header p,
+      .insight p {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .legend {
+        display: flex;
+        gap: 12px;
+        padding: 3px 0 0;
+        list-style: none;
+      }
+      .legend li {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--muted);
+        font-size: 11px;
+      }
+      .legend li::before {
+        content: "";
+        width: 16px;
+        border-top: 2px solid var(--accent);
+      }
+      .legend li:last-child::before {
+        border-top: 2px dashed var(--lilac);
+      }
+      .trend {
+        display: block;
+        width: 100%;
+        height: 209px;
+        overflow: visible;
+      }
+      .trend .gridline {
+        stroke: var(--line);
+      }
+      .trend .axis {
+        fill: var(--muted);
+        font-size: 10px;
+      }
+      .trend .actual {
+        stroke: var(--accent);
+      }
+      .trend .goal {
+        stroke: var(--lilac);
+        stroke-dasharray: 5 5;
+      }
+      .trend .dot {
+        fill: var(--surface);
+        stroke: var(--accent);
+        stroke-width: 2;
+      }
+      .trend .dot:last-of-type {
+        fill: var(--accent);
+        stroke: var(--surface);
+      }
+      .channel-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.15fr);
+        gap: 14px;
+        align-items: center;
+        min-height: 209px;
+      }
+      .donut {
+        position: relative;
+        display: grid;
+        place-items: center;
+        width: min(100%, 152px);
+        aspect-ratio: 1;
+        margin-inline: auto;
+        border-radius: 50%;
+        background: var(--surface-raised);
+      }
+      .donut-inner {
+        display: grid;
+        align-content: center;
+        justify-items: center;
+        width: 69%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: var(--surface);
+        color: var(--muted);
+        font-size: 11px;
+        text-align: center;
+      }
+      .donut-inner strong {
+        color: var(--text);
+        font-size: clamp(14px, 2vw, 20px);
+        font-weight: 760;
+        letter-spacing: -0.055em;
+        line-height: 1.2;
+      }
+      .channel-list,
+      .category-list,
+      .region-list {
+        list-style: none;
+        padding: 0;
+      }
+      .channel-list {
+        display: grid;
+        gap: 9px;
+      }
+      .channel-list li {
+        display: grid;
+        grid-template-columns: 9px minmax(0, 1fr) auto;
+        gap: 7px;
+        align-items: baseline;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .channel-list .swatch {
+        align-self: center;
+        width: 8px;
+        height: 8px;
+        border-radius: 3px;
+      }
+      .channel-list strong {
+        color: var(--text);
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .category-list {
+        display: grid;
+        gap: 13px;
+        margin-block: 3px 2px;
+      }
+      .category-list li {
+        display: grid;
+        gap: 5px;
+      }
+      .category-caption {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .category-caption strong {
+        color: var(--text);
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+      }
+      .bar-track {
+        height: 8px;
+        overflow: hidden;
+        border-radius: 6px;
+        background: var(--surface-raised);
+      }
+      .bar-fill {
+        display: block;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--accent), var(--teal));
+      }
+      .region-list {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        align-items: end;
+        min-height: 135px;
+        text-align: center;
+      }
+      .region-list li {
+        display: grid;
+        justify-items: center;
+        gap: 4px;
+        color: var(--muted);
+        font-size: 11px;
+      }
+      .region-list strong {
+        color: var(--text);
+        font-size: 12px;
+        font-variant-numeric: tabular-nums;
+      }
+      .region-fill {
+        width: min(65%, 46px);
+        border-radius: 6px 6px 2px 2px;
+        background: linear-gradient(
+          180deg,
+          var(--accent),
+          var(--surface-raised)
+        );
+      }
+      .insight {
+        display: flex;
+        align-items: start;
+        gap: 12px;
+        margin-block: 12px;
+        padding: 13px 17px;
+      }
+      .insight .kpi-icon {
+        margin-top: 2px;
+      }
+      .data-details {
+        padding: 12px 17px;
+        color: var(--muted);
+      }
+      .data-details h2 {
+        color: var(--text);
+        font-size: 1rem;
+        font-weight: 730;
+      }
+      .data-details p {
+        margin-block: 9px;
+        font-size: 12px;
+      }
+      .data-details strong {
+        color: var(--text);
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      table {
+        width: 100%;
+        min-width: 325px;
+        border-collapse: collapse;
+        text-align: right;
+        font-size: 12px;
+        font-variant-numeric: tabular-nums;
+      }
+      caption {
+        padding-block: 3px 5px;
+        text-align: left;
+        font-weight: 650;
+      }
+      th,
+      td {
+        padding: 6px;
+        border-bottom: 1px solid var(--line);
+      }
+      th {
+        color: var(--text);
+        font-weight: 650;
+      }
+      th:first-child {
+        text-align: left;
+      }
+      footer {
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+      }
+      footer .wrap {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding-block: 14px;
+        font-size: 12px;
+      }
+      noscript p {
+        margin-bottom: 12px;
+        padding: 12px;
+        color: var(--text);
+      }
+      @media (max-width: 1050px) {
+        .wrap {
+          width: min(100% - 44px, 1412px);
+        }
+      }
+      @media (max-width: 920px) {
+        .kpi {
+          padding-inline: 11px;
+        }
+        .spark {
+          display: none;
+        }
+        .chart-panel {
+          padding-inline: 13px;
+        }
+      }
+      @media (max-width: 700px) {
+        .analysis-filters {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .kpis {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .charts {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .channel-layout {
+          min-height: 156px;
+        }
+        select {
+          min-width: 0;
+        }
+      }
+      @media (max-width: 680px) {
+        .wrap {
+          width: calc(100% - 32px);
+        }
+        .intro::after {
+          inset-inline-start: 36%;
+        }
+      }
+      @media (max-width: 370px) {
+        .wrap {
+          width: calc(100% - 24px);
+        }
+        .filters {
+          grid-template-columns: 1fr;
+        }
+        .channel-layout {
+          gap: 8px;
+        }
+        .channel-list li {
+          gap: 4px;
+          font-size: 11px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <svg
+      class="icon-library"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      focusable="false"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.7"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <symbol id="revenue-icon" viewBox="0 0 24 24">
+        <path d="M3 19h18M5 15l5-5 4 3 5-6m-5 0h5v5" />
+      </symbol>
+      <symbol id="orders-icon" viewBox="0 0 24 24">
+        <path d="M5 8h14l1 12H4L5 8Zm4 1V6a3 3 0 0 1 6 0v3" />
+      </symbol>
+      <symbol id="ticket-icon" viewBox="0 0 24 24">
+        <path
+          d="M3 6h18v4a2 2 0 0 0 0 4v4H3v-4a2 2 0 0 0 0-4V6Zm12 2v1m0 2.5v1m0 2.5v1"
+        />
+      </symbol>
+      <symbol id="target-icon" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <circle cx="12" cy="12" r="5" />
+        <circle cx="12" cy="12" r="1" />
+      </symbol>
+    </svg>
+    <a class="skip" href="#conteudo">Ir para o conteúdo</a>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a
+          class="brand"
+          href="index.html#inicio"
+          data-theme-link
+          aria-label="Lukas Martins Oliveira, início"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 54 26"
+            fill="none"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path
+              d="M4 5v13.5l3 3h13M27 21.5V5l11.5 10L50 5v16.5"
+              stroke="currentColor"
+              stroke-width="2.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="m20 21.5 4-4"
+              stroke="var(--brand-detail, currentColor)"
+              stroke-width="2.6"
+              stroke-linecap="round"
+            />
+          </svg>
+          <span class="brand-signal" aria-hidden="true">
+            <span class="satellite"></span>
+            <span></span>
+            <span class="satellite"></span>
+          </span>
+        </a>
+        <nav class="main-nav" aria-label="Navegação do painel">
+          <a href="index.html#projetos" data-theme-link>Projetos</a>
+          <a href="#visao-geral" aria-current="location">Visão geral</a>
+          <a href="#dados-mensais">Dados mensais</a>
+        </nav>
+        <div class="theme-picker" role="group" aria-label="Tema do site">
+          <button
+            type="button"
+            data-theme-choice="light"
+            aria-label="Claro"
+            title="Tema claro"
+            aria-pressed="false"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="4" />
+              <path
+                d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"
+              />
+            </svg>
+          </button>
+          <button
+            type="button"
+            data-theme-choice="dark"
+            aria-label="Escuro"
+            title="Tema escuro"
+            aria-pressed="true"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M20.5 15A8.5 8.5 0 0 1 9 3.5 8.5 8.5 0 1 0 20.5 15Z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+    <main class="wrap" id="conteudo" tabindex="-1">
+      <div class="intro" id="visao-geral">
+        <p class="eyebrow">Business Intelligence (BI)</p>
+        <h1>Radar <span>de Vendas</span></h1>
+        <p class="intro-description">
+          Acompanhe o desempenho de uma loja virtual em relação às metas e veja
+          quais categorias, canais e regiões mais contribuem para as vendas.
+        </p>
+      </div>
+      <section class="panel analysis-filters" aria-labelledby="filtros-titulo">
+        <div>
+          <h2 id="filtros-titulo">Filtros da análise</h2>
+          <p>Dados simulados de e-commerce</p>
+        </div>
+        <div class="filters" role="group" aria-label="Filtros do painel">
+          <label
+            >Período
+            <select id="period">
+              <option value="3">Out–Dez 2025</option>
+              <option value="6" selected>Jul–Dez 2025</option>
+              <option value="12">Ano de 2025</option>
+            </select>
+          </label>
+          <label
+            >Categoria
+            <select id="category">
+              <option value="all">Todas as categorias</option>
+              <option value="electronics">Eletrônicos</option>
+              <option value="home">Casa e decoração</option>
+              <option value="accessories">Acessórios</option>
+            </select>
+          </label>
+        </div>
+      </section>
+      <noscript
+        ><p class="panel">
+          Ative o JavaScript para usar os filtros e visualizar os dados
+          simulados.
+        </p></noscript
+      >
+      <dl class="kpis" aria-label="Indicadores do recorte">
+        <div class="panel kpi">
+          <dt>
+            Receita total<span class="kpi-icon"
+              ><svg class="icon" aria-hidden="true">
+                <use href="#revenue-icon" /></svg
+            ></span>
+          </dt>
+          <dd>
+            <span class="kpi-value" id="revenue">—</span
+            ><svg
+              class="spark"
+              viewBox="0 0 70 24"
+              aria-hidden="true"
+              id="revenue-spark"
+            ></svg>
+          </dd>
+          <dd class="kpi-note">Vendas no recorte</dd>
+        </div>
+        <div class="panel kpi">
+          <dt>
+            Pedidos<span class="kpi-icon"
+              ><svg class="icon" aria-hidden="true">
+                <use href="#orders-icon" /></svg
+            ></span>
+          </dt>
+          <dd>
+            <span class="kpi-value" id="orders">—</span
+            ><svg
+              class="spark"
+              viewBox="0 0 70 24"
+              aria-hidden="true"
+              id="orders-spark"
+            ></svg>
+          </dd>
+          <dd class="kpi-note">Transações concluídas</dd>
+        </div>
+        <div class="panel kpi">
+          <dt>
+            Ticket médio<span class="kpi-icon"
+              ><svg class="icon" aria-hidden="true">
+                <use href="#ticket-icon" /></svg
+            ></span>
+          </dt>
+          <dd>
+            <span class="kpi-value" id="ticket">—</span
+            ><svg
+              class="spark"
+              viewBox="0 0 70 24"
+              aria-hidden="true"
+              id="ticket-spark"
+            ></svg>
+          </dd>
+          <dd class="kpi-note">Receita por pedido</dd>
+        </div>
+        <div class="panel kpi">
+          <dt>
+            Meta atingida<span class="kpi-icon"
+              ><svg class="icon" aria-hidden="true">
+                <use href="#target-icon" /></svg
+            ></span>
+          </dt>
+          <dd>
+            <span class="kpi-value" id="goal-rate">—</span
+            ><svg
+              class="spark"
+              viewBox="0 0 70 24"
+              aria-hidden="true"
+              id="goal-spark"
+            ></svg>
+          </dd>
+          <dd class="kpi-note" id="goal-note">Em relação à meta do período</dd>
+        </div>
+      </dl>
+      <section class="charts" aria-label="Gráficos do recorte">
+        <article class="panel chart-panel" aria-labelledby="trend-heading">
+          <div class="chart-header">
+            <div>
+              <h2 id="trend-heading">Receita × meta</h2>
+              <p>Evolução mensal em reais</p>
+            </div>
+            <ul class="legend" aria-label="Legenda">
+              <li>Receita</li>
+              <li>Meta</li>
+            </ul>
+          </div>
+          <svg
+            class="trend"
+            id="trend"
+            role="img"
+            aria-label="Gráfico de receita e meta mensal"
+          ></svg>
+        </article>
+        <article class="panel chart-panel" aria-labelledby="channel-heading">
+          <div class="chart-header">
+            <div>
+              <h2 id="channel-heading">Vendas por canal</h2>
+              <p>Participação na receita total</p>
+            </div>
+          </div>
+          <div class="channel-layout">
+            <div class="donut" id="donut" aria-hidden="true">
+              <div class="donut-inner">
+                <strong id="donut-total">—</strong>em reais
+              </div>
+            </div>
+            <ul class="channel-list" id="channel-list"></ul>
+          </div>
+        </article>
+        <article class="panel chart-panel" aria-labelledby="category-heading">
+          <div class="chart-header">
+            <div>
+              <h2 id="category-heading">Receita por categoria</h2>
+              <p>Participação de cada linha no recorte</p>
+            </div>
+          </div>
+          <ul class="category-list" id="category-list"></ul>
+        </article>
+        <article class="panel chart-panel" aria-labelledby="region-heading">
+          <div class="chart-header">
+            <div>
+              <h2 id="region-heading">Pedidos por região</h2>
+              <p>Volume de transações concluídas</p>
+            </div>
+          </div>
+          <ul class="region-list" id="region-list"></ul>
+        </article>
+      </section>
+      <aside class="panel insight" aria-labelledby="insight-heading">
+        <span class="kpi-icon"
+          ><svg class="icon" aria-hidden="true">
+            <use href="#revenue-icon" /></svg
+        ></span>
+        <div>
+          <h2 id="insight-heading">Leitura do recorte</h2>
+          <p id="insight" aria-live="polite"></p>
+        </div>
+      </aside>
+      <section
+        class="panel data-details"
+        id="dados-mensais"
+        aria-labelledby="dados-titulo"
+      >
+        <h2 id="dados-titulo">Dados mensais e metodologia de BI</h2>
+        <p>
+          A base simulada combina mês, categoria, canal e região. O painel soma
+          receita e pedidos do recorte, divide receita por pedidos para obter o
+          ticket médio e compara a receita com a meta da categoria no mesmo
+          período.
+        </p>
+        <p>
+          <strong>Tecnologias usadas.</strong> HTML e CSS na interface,
+          JavaScript nos filtros e no cálculo dos indicadores e SVG no gráfico
+          de evolução da receita.
+        </p>
+        <div
+          class="table-wrap"
+          tabindex="0"
+          role="region"
+          aria-label="Tabela de dados mensais"
+        >
+          <table>
+            <caption>
+              Receita, meta e pedidos por mês
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Mês</th>
+                <th scope="col">Receita</th>
+                <th scope="col">Meta</th>
+                <th scope="col">Pedidos</th>
+              </tr>
+            </thead>
+            <tbody id="monthly-data"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="wrap">
+        <p>Lukas Martins Oliveira · Portfólio profissional</p>
+        <a href="index.html#projetos" data-theme-link
+          >Voltar ao portfólio</a
+        >
+      </div>
+    </footer>
+    <script src="projeto-bi.js"></script>
+  </body>
+</html>

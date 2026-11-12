@@ -1,0 +1,2909 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="object-src 'none'; base-uri 'none'; form-action 'none'; connect-src 'none'; frame-src 'none'"
+    />
+    <title>Lukas Martins Oliveira | Desenvolvedor Full Stack</title>
+    <meta
+      name="description"
+      content="Lukas Martins Oliveira, desenvolvedor full stack no Rio de Janeiro. Projetos de UI/UX, sites, lojas virtuais, sistemas web e análise de dados."
+    />
+    <meta name="theme-color" content="#101626" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Lukas Martins Oliveira | Desenvolvedor Full Stack"
+    />
+    <meta
+      property="og:description"
+      content="Trabalhos publicados e currículo profissional de desenvolvimento web, APIs, dados e automação."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2054%2026%22%20fill%3D%22none%22%3E%0A%20%20%3Crect%20width%3D%2254%22%20height%3D%2226%22%20rx%3D%225%22%20fill%3D%22%23080910%22%2F%3E%3Cpath%20d%3D%22M4%205v13.5l3%203h13M27%2021.5V5l11.5%2010L50%205v16.5%22%20stroke%3D%22%23f7f8ff%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%20%20%3Cpath%20d%3D%22m20%2021.5%204-4%22%20stroke%3D%22%23a879ef%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E"
+    />
+    <script src="tema-portfolio.js"></script>
+    <link rel="stylesheet" href="tema-portfolio.css" />
+    <link rel="stylesheet" href="assistente-portfolio.css" />
+    <style>
+      :root {
+        --banner-base: #151021;
+        --banner-mid: #29193e;
+        --banner-end: #46286c;
+        --banner-edge: #563c6f;
+        --banner-ink: #fbf8ff;
+        --banner-accent: #dccaff;
+        --banner-gradient: linear-gradient(
+          113deg,
+          var(--banner-base),
+          var(--banner-mid) 49%,
+          var(--banner-end)
+        );
+      }
+      :root,
+      .dark-card {
+        --violet-surface: #211831;
+        --violet-raised: #332445;
+        --violet-line: #4e3a65;
+        --violet-ink: #dccaff;
+        --violet-gradient: linear-gradient(
+          145deg,
+          var(--violet-surface),
+          var(--violet-raised)
+        );
+      }
+      [data-theme="light"] {
+        --violet-surface: #f5effc;
+        --violet-raised: #ece2f7;
+        --violet-line: #dfd1ef;
+        --violet-ink: #573681;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        position: relative;
+        isolation: isolate;
+        margin: 0;
+        color: var(--text);
+        background: var(--page);
+        font: 16px/1.5 var(--sans);
+      }
+      [data-theme="dark"] body {
+        background:
+          radial-gradient(
+            ellipse 650px 460px at 100% 16rem,
+            #733bb52e,
+            transparent
+          ),
+          var(--page);
+      }
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+      a {
+        color: inherit;
+      }
+      button {
+        font: inherit;
+      }
+      svg {
+        display: block;
+      }
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 4px;
+      }
+      .wrap {
+        width: min(84.5vw, 1412px);
+        margin-inline: auto;
+      }
+      /* A arte das margens é apenas decorativa e fica atrás de todo o conteúdo. */
+      .ornamentos {
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+      .ornamentos svg {
+        width: 100%;
+        height: 100%;
+      }
+      [data-theme="light"] .ornamentos {
+        opacity: 0.18;
+      }
+
+      /* Texto e retrato compartilham o mesmo banner nos dois temas. */
+      .hero {
+        --accent: var(--banner-accent);
+        --muted: #d9cfe5;
+        --name-start: #e5d7ff;
+        --name-end: #c09aff;
+        --button-start: #c29efa;
+        --button-end: #d3bafa;
+        --button-text: #20152e;
+        --button-edge: #ddc8ff;
+        --button-glow: #b78af93d;
+        --hero-padding-end: clamp(18px, 2vw, 28px);
+        position: relative;
+        isolation: isolate;
+        display: grid;
+        grid-template-columns: minmax(0, 1.16fr) minmax(0, 1fr);
+        align-items: center;
+        gap: clamp(16px, 2.7vw, 42px);
+        min-height: clamp(340px, 30vw, 430px);
+        margin-block: 14px;
+        overflow: hidden;
+        padding: var(--hero-padding-end) clamp(20px, 3.2vw, 50px);
+        border: 1px solid var(--banner-edge);
+        border-radius: 22px;
+        background:
+          radial-gradient(circle at 91% 22%, #d1b2ffcf 0 1px, transparent 3px),
+          radial-gradient(
+            circle at 96% 38%,
+            #bc96eead 0 1px,
+            transparent 2.5px
+          ),
+          radial-gradient(
+            ellipse 45% 95% at 80% 73%,
+            #8951c680,
+            transparent 82%
+          ),
+          var(--banner-gradient);
+        color: var(--banner-ink);
+        box-shadow: 0 14px 30px #0d092226;
+      }
+      .hero::before {
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        background: url("fita-azul-violeta.webp") no-repeat right 54% / 73% auto;
+        mask-image: linear-gradient(90deg, transparent 36%, #000 79%);
+        opacity: 0.76;
+        content: "";
+      }
+      .hero-copy {
+        min-width: 0;
+        padding-block: 10px;
+      }
+      .kicker {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--accent);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.055em;
+      }
+      .kicker::before {
+        content: "";
+        width: 22px;
+        height: 1px;
+        background: currentColor;
+      }
+      h1 {
+        margin-top: 10px;
+        font-size: clamp(43px, 5.65vw, 88px);
+        line-height: 1;
+        letter-spacing: -0.05em;
+        font-weight: 760;
+        text-wrap: balance;
+      }
+      h1 .surname {
+        color: var(--name-end);
+        background: linear-gradient(106deg, var(--name-start), var(--name-end));
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+      }
+      .role {
+        margin-top: 9px;
+        font-size: clamp(23px, 2.24vw, 34px);
+        font-weight: 650;
+        line-height: 1.14;
+        letter-spacing: -0.035em;
+      }
+      .intro {
+        max-width: 470px;
+        margin-top: 14px;
+        color: var(--muted);
+        font-size: clamp(15px, 1.19vw, 18px);
+        line-height: 1.6;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: clamp(9px, 1.45vw, 23px);
+        margin-top: 19px;
+      }
+      .portfolio-nav a[href="#contato"] {
+        font-weight: 700;
+      }
+      .action {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 13px;
+        min-height: 44px;
+        padding: 7px clamp(16px, 1.6vw, 28px);
+        border: 1px solid var(--muted);
+        border-radius: 100px;
+        font-size: 13px;
+        font-weight: 650;
+        text-decoration: none;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease,
+          border-color 0.2s ease;
+      }
+      .action svg,
+      .about-link svg {
+        flex: none;
+        width: 15px;
+        height: 15px;
+      }
+      .action.primary {
+        border-color: var(--button-edge);
+        color: var(--button-text);
+        background: linear-gradient(
+          112deg,
+          var(--button-start),
+          var(--button-end)
+        );
+        box-shadow: 0 0 20px var(--button-glow);
+      }
+      .action:hover {
+        border-color: var(--accent);
+        transform: translateY(-2px);
+        box-shadow: 0 0 22px var(--button-glow);
+      }
+      .stage {
+        position: relative;
+        top: var(--hero-padding-end);
+        align-self: end;
+        justify-self: end;
+        width: min(100%, 460px);
+        aspect-ratio: 1.3;
+      }
+      .stage > img {
+        position: absolute;
+        inset: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* Mantém o contorno do ombro e encerra o recorte na base do banner. */
+        object-position: center 23%;
+      }
+      /* A faixa apresenta as tecnologias do perfil logo depois da abertura. */
+      .stack {
+        --text: var(--banner-ink);
+        --accent: var(--banner-accent);
+        --line: var(--banner-edge);
+        --surface-raised: #422a5c;
+        --card-glow: #c7a5ff66;
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        gap: clamp(15px, 2.2vw, 36px);
+        min-height: 67px;
+        padding: 10px clamp(14px, 1.5vw, 25px);
+        border: 1px solid var(--line);
+        border-radius: 13px;
+        background: var(--banner-gradient);
+      }
+      .stack h2 {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        gap: 8px;
+        max-width: 117px;
+        color: var(--accent);
+        font: 700 13px/1.2 var(--sans);
+      }
+      .stack-heading-mark {
+        display: grid;
+        flex: none;
+        width: 30px;
+        height: 30px;
+        place-items: center;
+        border-radius: 8px;
+        background: var(--surface-raised);
+      }
+      .stack-heading-mark svg {
+        width: 16px;
+        height: 16px;
+      }
+      .stack ul {
+        display: grid;
+        grid-template-columns: repeat(10, minmax(max-content, 1fr));
+        flex: 1;
+        gap: 11px 8px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .stack li {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        color: var(--text);
+        font-size: 13px;
+        font-weight: 530;
+        white-space: nowrap;
+      }
+      .stack li:is(:hover, :focus-within) {
+        color: var(--accent);
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .stack-heading-mark svg {
+          transition: transform 180ms ease;
+        }
+        .stack h2:hover .stack-heading-mark svg,
+        .stack:focus-within .stack-heading-mark svg {
+          transform: translateY(-1px) rotate(-6deg);
+        }
+        .stack li .stack-symbol {
+          transition:
+            transform 180ms ease,
+            filter 180ms ease;
+        }
+        .stack li:is(:hover, :focus-within) .stack-symbol {
+          transform: translateY(-2px);
+          filter: drop-shadow(0 2px 4px var(--card-glow));
+        }
+      }
+      .stack-symbol {
+        flex: none;
+        width: 25px;
+        height: 25px;
+      }
+      .stack-symbol--sap {
+        width: 30px;
+        height: 15px;
+        object-fit: contain;
+      }
+      .stack-symbol--nextjs {
+        border-radius: 50%;
+        box-shadow: 0 0 0 1px var(--line);
+      }
+      .stack-symbol--aws {
+        color: #ffb44e;
+      }
+      .stack-symbol--search {
+        color: var(--accent);
+      }
+      .stack-sql-mark {
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: var(--surface-raised);
+        color: var(--accent);
+        font: 750 9px/1 var(--mono);
+      }
+      .stack-tech-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        text-decoration: none;
+      }
+      .stack-tech-link:hover {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .profile-company {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.8fr);
+        gap: clamp(24px, 3.8vw, 62px);
+        padding-block: clamp(31px, 3vw, 50px);
+      }
+      .projects-gallery {
+        padding-bottom: 22px;
+      }
+      .section-label {
+        width: 38px;
+        height: 1px;
+        margin-bottom: 10px;
+        background: var(--accent);
+      }
+      .section-heading {
+        margin-bottom: 12px;
+        font-size: clamp(24px, 1.85vw, 31px);
+        line-height: 1.15;
+        letter-spacing: -0.04em;
+      }
+      .about > p {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.55;
+      }
+      .about .profile-principle {
+        margin-bottom: 8px;
+        color: var(--text);
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.4;
+      }
+      .about .secondary-label {
+        margin-top: 15px;
+        color: var(--text);
+        font-size: 12px;
+        font-weight: 650;
+      }
+      .profile-focus {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin: 12px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+      .profile-focus a,
+      .secondary-stack li,
+      .project-tools li {
+        border: 1px solid var(--violet-line);
+        background: var(--violet-raised);
+        color: var(--violet-ink);
+      }
+      .profile-focus a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        min-height: 32px;
+        padding: 4px 8px;
+        border-radius: 8px;
+        font-size: 11px;
+        font-weight: 650;
+        text-decoration: none;
+      }
+      .profile-focus a:is(:hover, :focus-visible) {
+        border-color: var(--accent);
+      }
+      .profile-focus svg {
+        width: 15px;
+        height: 15px;
+      }
+      .secondary-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin: 7px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+      .secondary-stack li {
+        padding: 3px 8px;
+        border-radius: 5px;
+        font-size: 11px;
+      }
+      .about .location {
+        margin-top: 13px;
+        font-size: 12px;
+      }
+      .about-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 17px;
+        padding: 5px 12px;
+        border: 1px solid var(--line);
+        border-radius: 100px;
+        text-decoration: none;
+        font-size: 11px;
+        font-weight: 650;
+      }
+      .about-link:hover {
+        border-color: var(--accent);
+      }
+      /* A imagem da empresa recebe um reflexo ao passar o mouse ou focar o link. */
+      .published-card {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        overflow: hidden;
+        border: 1px solid var(--violet-line);
+        border-radius: 13px;
+        background: var(--violet-gradient);
+        transition:
+          border-color 260ms ease,
+          box-shadow 260ms ease;
+      }
+      .published-card:hover,
+      .published-card:focus-within {
+        border-color: var(--accent);
+        box-shadow: 0 12px 34px var(--card-glow);
+      }
+      .company-visual {
+        position: relative;
+        min-height: 215px;
+        overflow: hidden;
+      }
+      .company-visual img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 480ms ease;
+      }
+      .company-visual::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: linear-gradient(
+          110deg,
+          transparent 32%,
+          color-mix(in srgb, var(--accent) 42%, transparent) 53%,
+          transparent 71%
+        );
+        transform: translateX(-110%);
+        transition: transform 740ms ease;
+      }
+      .published-card:hover .company-visual img,
+      .published-card:focus-within .company-visual img {
+        transform: scale(1.04);
+      }
+      .published-card:hover .company-visual::after,
+      .published-card:focus-within .company-visual::after {
+        transform: translateX(110%);
+      }
+      .published-content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: center;
+        gap: 9px;
+        padding: clamp(17px, 2.1vw, 34px);
+      }
+      .published-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        color: var(--violet-ink);
+        font-size: 11px;
+        font-weight: 650;
+      }
+      .published-status::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: currentColor;
+      }
+      .published-content h3 {
+        font-size: clamp(24px, 2.15vw, 34px);
+        line-height: 1;
+        letter-spacing: -0.045em;
+      }
+      .published-summary {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .company-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 6px;
+      }
+      .company-actions .action {
+        gap: 8px;
+        padding-inline: 14px;
+      }
+      .cv-contact svg {
+        color: #44dd85;
+      }
+      [data-theme="light"] .cv-contact svg {
+        color: #147343;
+      }
+      .project-list {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(12px, 1.4vw, 22px);
+      }
+      .project-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        overflow: hidden;
+        border: 1px solid var(--violet-line);
+        border-radius: 14px;
+        background: color-mix(
+          in srgb,
+          var(--surface) 78%,
+          var(--violet-surface)
+        );
+        transition:
+          border-color 260ms ease,
+          box-shadow 260ms ease;
+      }
+      .project-card > img {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        border-bottom: 1px solid var(--violet-line);
+        object-fit: cover;
+      }
+      .project-card > div {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        align-items: start;
+        padding: clamp(14px, 1.4vw, 20px);
+      }
+      .project-kind {
+        margin-bottom: 3px;
+        color: var(--violet-ink);
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .project-card h3 {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin-bottom: 5px;
+        font-size: 16px;
+        line-height: 1.22;
+      }
+      .project-mark {
+        flex: none;
+        width: 24px;
+        height: 24px;
+        border-radius: 5px;
+        object-fit: contain;
+      }
+      .project-card .published-summary {
+        font-size: 13px;
+      }
+      .project-tools {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin: 9px 0 2px;
+        padding: 0;
+        list-style: none;
+      }
+      .project-tools li {
+        padding: 3px 6px;
+        border-radius: 6px;
+        font-size: 11px;
+        line-height: 1.3;
+      }
+      .project-flow {
+        width: 100%;
+        margin-top: 10px;
+        border: 1px solid var(--violet-line);
+        border-radius: 9px;
+        background: var(--violet-surface);
+      }
+      .project-flow summary {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 44px;
+        padding: 7px 10px;
+        border-radius: inherit;
+        color: var(--violet-ink);
+        font-size: 12px;
+        font-weight: 700;
+        list-style: none;
+        cursor: pointer;
+      }
+      .project-flow summary::-webkit-details-marker {
+        display: none;
+      }
+      .project-flow summary:hover {
+        background: var(--violet-raised);
+      }
+      .project-flow summary svg {
+        flex: none;
+        width: 15px;
+        height: 15px;
+      }
+      .project-flow-chevron {
+        margin-left: auto;
+      }
+      .project-flow[open] .project-flow-chevron {
+        transform: rotate(180deg);
+      }
+      .project-flow ol {
+        margin: 0;
+        padding: 0 12px 12px 32px;
+        color: var(--text);
+        font-size: 12px;
+        line-height: 1.5;
+      }
+      .project-flow li + li {
+        margin-top: 4px;
+      }
+      .project-flow li::marker {
+        color: var(--violet-ink);
+        font-weight: 700;
+      }
+      .project-case-notes {
+        display: grid;
+        gap: 8px;
+        margin: 0;
+        padding: 0 10px 10px;
+        font-size: 12px;
+        line-height: 1.45;
+      }
+      .project-case-notes dt,
+      .project-case-delivery {
+        color: var(--violet-ink);
+        font-weight: 700;
+      }
+      .project-case-notes dd {
+        margin: 2px 0 0;
+        color: var(--muted);
+      }
+      .project-case-delivery {
+        margin: 0 10px 6px;
+        font-size: 12px;
+      }
+      .project-flow .flow-contact {
+        display: flex;
+        margin: 0 10px;
+        padding-top: 0;
+        border-top: 1px solid var(--violet-line);
+      }
+      .projects-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+        margin-top: 16px;
+      }
+      /* O case de BI abre a galeria e mostra uma amostra do painel. */
+      .bi-case {
+        grid-column: span 2;
+        background: var(--violet-gradient);
+      }
+      .bi-case:target {
+        border-color: var(--accent);
+      }
+      .bi-case > .bi-case-copy {
+        gap: 6px;
+      }
+      .bi-case h3 {
+        margin-bottom: 0;
+        font-size: clamp(17px, 1.65vw, 25px);
+        letter-spacing: -0.025em;
+      }
+      .bi-case .published-summary {
+        max-width: 54ch;
+      }
+      .bi-case > img {
+        order: -1;
+        aspect-ratio: 9 / 4;
+        background: var(--violet-surface);
+      }
+      .bi-case .action {
+        margin-top: 4px;
+      }
+      .project-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        min-height: 44px;
+        margin-top: auto;
+        padding-top: 6px;
+        color: var(--violet-ink);
+        font-size: 12px;
+        font-weight: 650;
+        text-decoration: none;
+      }
+      .project-link:hover {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      .project-link svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      /* O brilho responde ao ponteiro, com um centro fixo para o foco por teclado. */
+      :is(.project-card, .published-card)::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0;
+        background: radial-gradient(
+          ellipse 220px 150px at var(--glow-x, 50%) var(--glow-y, 70%),
+          var(--card-glow),
+          transparent
+        );
+        transition: opacity 260ms ease;
+      }
+      :is(.project-card, .published-card):is(:hover, :focus-within)::after {
+        opacity: 1;
+      }
+      .project-card:hover,
+      .project-card:focus-within {
+        border-color: var(--accent);
+        box-shadow: 0 10px 25px var(--card-glow);
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        .hero .action svg {
+          transition: transform 200ms ease;
+        }
+        .hero .action:is(:hover, :focus-visible) svg {
+          transform: translateX(3px);
+        }
+        .hero .action[href="#projetos"]:is(:hover, :focus-visible) svg {
+          transform: translateY(3px);
+        }
+        .entering {
+          animation: section-enter 480ms cubic-bezier(0.22, 1, 0.36, 1)
+            backwards;
+        }
+        .project-list .project-card:nth-child(2) {
+          animation-delay: 45ms;
+        }
+        .project-list .project-card:nth-child(3) {
+          animation-delay: 90ms;
+        }
+        .project-list .project-card:nth-child(4) {
+          animation-delay: 135ms;
+        }
+        @keyframes section-enter {
+          from {
+            opacity: 0.72;
+            transform: translateY(12px);
+          }
+          to {
+            opacity: 1;
+            transform: none;
+          }
+        }
+      }
+
+      /* As frentes de atuação explicam o que a stack permite construir. */
+      .practice {
+        display: grid;
+        grid-template-columns: minmax(210px, 1fr) minmax(0, 2.86fr);
+        gap: clamp(25px, 4vw, 64px);
+        margin-top: 16px;
+        margin-bottom: 44px;
+        padding: 30px clamp(19px, 3.25vw, 53px);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--surface);
+      }
+      .practice-intro p,
+      .practice-item p {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+      .practice-intro .cv-name {
+        color: var(--text);
+        font-size: 15px;
+        font-weight: 700;
+      }
+      .practice-intro a {
+        color: var(--accent);
+        text-underline-offset: 3px;
+      }
+      .practice-intro .cv-contact {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        min-height: 36px;
+        margin-top: 9px;
+        font-size: 12px;
+        font-weight: 650;
+      }
+      .cv-contact svg {
+        width: 16px;
+        height: 16px;
+      }
+      .practice-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+      .service-item,
+      .practice-item {
+        --text: var(--banner-ink);
+        --muted: #e3d9f1;
+        --accent: var(--banner-accent);
+        --violet-ink: var(--banner-accent);
+        --violet-raised: #422a5c;
+        --violet-line: var(--banner-edge);
+        border: 1px solid var(--violet-line);
+        background: var(--banner-gradient);
+        color: var(--text);
+      }
+      .practice-item {
+        display: grid;
+        grid-template-columns: 36px minmax(0, 1fr);
+        align-content: start;
+        align-items: start;
+        column-gap: 11px;
+        padding: 13px;
+        border-radius: 10px;
+      }
+      .practice-item:target {
+        border-color: var(--accent);
+      }
+      .practice-icon {
+        display: grid;
+        grid-row: span 2;
+        width: 36px;
+        height: 36px;
+        place-items: center;
+        border: 1px solid var(--violet-line);
+        border-radius: 8px;
+        background: var(--violet-raised);
+        color: var(--violet-ink);
+      }
+      .practice-icon svg {
+        width: 21px;
+        height: 21px;
+      }
+      .practice-item h3 {
+        margin-bottom: 4px;
+        font-size: 15px;
+        line-height: 1.3;
+      }
+      .bi-project-link {
+        grid-column: 2;
+        justify-self: start;
+        margin-top: 7px;
+        color: var(--accent);
+        font-size: 13px;
+        font-weight: 650;
+        text-underline-offset: 3px;
+      }
+      .services {
+        margin-block: 8px 34px;
+      }
+      .service-list {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .service-item {
+        display: grid;
+        align-content: start;
+        gap: 8px;
+        padding: clamp(16px, 1.8vw, 25px);
+        border-radius: 14px;
+        box-shadow: inset 0 2px 0 var(--violet-line);
+      }
+      .service-item .practice-icon {
+        grid-row: auto;
+        margin-bottom: 3px;
+      }
+      .service-item h3 {
+        font-size: 17px;
+        line-height: 1.25;
+      }
+      .service-case-link {
+        justify-self: start;
+        min-height: 34px;
+        margin-top: 0;
+        padding-top: 0;
+      }
+      .service-item p,
+      .contact p {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.55;
+      }
+      .company-actions,
+      .contact {
+        --button-start: #5c2d96;
+        --button-end: #8153ba;
+        --button-text: #fff;
+        --button-edge: #9667ca;
+        --button-glow: #8153ba45;
+      }
+      .contact {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 18px;
+        margin-block: 0 44px;
+        padding: clamp(22px, 3vw, 42px);
+        border: 1px solid var(--violet-line);
+        border-radius: 16px;
+        background:
+          radial-gradient(
+            ellipse at 94% 48%,
+            var(--card-glow),
+            transparent 66%
+          ),
+          var(--surface);
+      }
+      .contact .section-heading {
+        margin-bottom: 6px;
+      }
+      .contact .actions {
+        margin-top: 0;
+      }
+      footer {
+        border-top: 1px solid var(--line);
+      }
+      .footer-inner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 10px;
+        padding-block: 14px;
+        color: var(--muted);
+        font-size: 11px;
+      }
+      footer a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 1240px) {
+        .stack ul {
+          grid-template-columns: repeat(7, minmax(max-content, 1fr));
+        }
+      }
+
+      @media (max-width: 1050px) {
+        .stack ul {
+          grid-template-columns: repeat(5, minmax(max-content, 1fr));
+        }
+      }
+
+      @media (max-width: 850px) {
+        .stack ul {
+          grid-template-columns: repeat(3, minmax(max-content, 1fr));
+        }
+      }
+
+      @media (max-width: 1050px) {
+        .wrap {
+          width: min(100% - 44px, 1412px);
+        }
+        .stack {
+          gap: 16px;
+        }
+        .practice {
+          grid-template-columns: 1fr;
+          gap: 17px;
+        }
+      }
+
+      @media (max-width: 820px) {
+        .profile-company {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+        .project-list {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .bi-case {
+          grid-column: auto;
+        }
+        .bi-case > img {
+          aspect-ratio: 16 / 9;
+        }
+        .contact {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .wrap {
+          width: calc(100% - 32px);
+        }
+        .hero {
+          --hero-padding-end: 18px;
+          grid-template-columns: minmax(0, 1fr);
+          padding: 18px clamp(16px, 4vw, 28px) var(--hero-padding-end);
+          min-height: 0;
+          gap: 12px;
+        }
+        .hero::before {
+          background-position: right bottom;
+          background-size: 130% auto;
+          mask-image: linear-gradient(transparent 27%, #000 72%);
+        }
+        .hero-copy {
+          padding-block: 0;
+        }
+        h1 {
+          font-size: clamp(35px, 9vw, 56px);
+        }
+        .role {
+          font-size: clamp(22px, 5.5vw, 29px);
+        }
+        .intro {
+          font-size: 14px;
+        }
+        .hero .action {
+          gap: 8px;
+          padding-inline: 12px;
+        }
+        .stage {
+          justify-self: center;
+          width: min(100%, 395px);
+        }
+        .stack {
+          align-items: stretch;
+          flex-direction: column;
+          gap: 12px;
+          padding: 12px;
+        }
+        .stack h2 {
+          max-width: none;
+        }
+        .stack ul {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 11px 12px;
+        }
+        .stack li {
+          font-size: 12px;
+        }
+        .profile-company {
+          padding-block: 30px 28px;
+        }
+        .published-card {
+          grid-template-columns: 1fr;
+        }
+        .company-visual {
+          aspect-ratio: 16 / 9;
+          min-height: 0;
+        }
+        .project-list {
+          grid-template-columns: 1fr;
+        }
+        .service-list {
+          grid-template-columns: 1fr;
+        }
+        .practice {
+          margin-top: 0;
+          margin-bottom: 27px;
+          padding-block: 21px;
+        }
+        .practice-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 350px) {
+        .hero .actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .action,
+        .published-card,
+        .project-card,
+        :is(.project-card, .published-card)::after,
+        .company-visual img {
+          transition: none;
+        }
+        .action:hover,
+        .published-card:hover .company-visual img,
+        .published-card:focus-within .company-visual img {
+          transform: none;
+        }
+        .company-visual::after {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body id="inicio">
+    <!-- Ícones incorporados ao HTML para funcionar também sem conexão.
+React, Next.js, TypeScript, Python, PostgreSQL, Angular, JavaScript, CSS3, Figma e WordPress: Devicon v2.17.0.
+Node.js e Docker: kits de marca de nodejs.org e docker.com.
+AWS: pictograma genérico de nuvem com identificação textual.
+WhatsApp: Simple Icons (CC0), https://simpleicons.org/.
+
+The MIT License (MIT)
+
+Copyright (c) 2015 konpa
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+    <svg
+      width="0"
+      height="0"
+      aria-hidden="true"
+      focusable="false"
+      style="position: absolute; overflow: hidden"
+    >
+      <symbol id="icon-react" viewBox="0 0 128 128">
+        <g fill="#61DAFB">
+          <circle cx="64" cy="64" r="11.4" />
+          <path
+            d="M107.3 45.2c-2.2-.8-4.5-1.6-6.9-2.3.6-2.4 1.1-4.8 1.5-7.1 2.1-13.2-.2-22.5-6.6-26.1-1.9-1.1-4-1.6-6.4-1.6-7 0-15.9 5.2-24.9 13.9-9-8.7-17.9-13.9-24.9-13.9-2.4 0-4.5.5-6.4 1.6-6.4 3.7-8.7 13-6.6 26.1.4 2.3.9 4.7 1.5 7.1-2.4.7-4.7 1.4-6.9 2.3C8.2 50 1.4 56.6 1.4 64s6.9 14 19.3 18.8c2.2.8 4.5 1.6 6.9 2.3-.6 2.4-1.1 4.8-1.5 7.1-2.1 13.2.2 22.5 6.6 26.1 1.9 1.1 4 1.6 6.4 1.6 7.1 0 16-5.2 24.9-13.9 9 8.7 17.9 13.9 24.9 13.9 2.4 0 4.5-.5 6.4-1.6 6.4-3.7 8.7-13 6.6-26.1-.4-2.3-.9-4.7-1.5-7.1 2.4-.7 4.7-1.4 6.9-2.3 12.5-4.8 19.3-11.4 19.3-18.8s-6.8-14-19.3-18.8zM92.5 14.7c4.1 2.4 5.5 9.8 3.8 20.3-.3 2.1-.8 4.3-1.4 6.6-5.2-1.2-10.7-2-16.5-2.5-3.4-4.8-6.9-9.1-10.4-13 7.4-7.3 14.9-12.3 21-12.3 1.3 0 2.5.3 3.5.9zM81.3 74c-1.8 3.2-3.9 6.4-6.1 9.6-3.7.3-7.4.4-11.2.4-3.9 0-7.6-.1-11.2-.4-2.2-3.2-4.2-6.4-6-9.6-1.9-3.3-3.7-6.7-5.3-10 1.6-3.3 3.4-6.7 5.3-10 1.8-3.2 3.9-6.4 6.1-9.6 3.7-.3 7.4-.4 11.2-.4 3.9 0 7.6.1 11.2.4 2.2 3.2 4.2 6.4 6 9.6 1.9 3.3 3.7 6.7 5.3 10-1.7 3.3-3.4 6.6-5.3 10zm8.3-3.3c1.5 3.5 2.7 6.9 3.8 10.3-3.4.8-7 1.4-10.8 1.9 1.2-1.9 2.5-3.9 3.6-6 1.2-2.1 2.3-4.2 3.4-6.2zM64 97.8c-2.4-2.6-4.7-5.4-6.9-8.3 2.3.1 4.6.2 6.9.2 2.3 0 4.6-.1 6.9-.2-2.2 2.9-4.5 5.7-6.9 8.3zm-18.6-15c-3.8-.5-7.4-1.1-10.8-1.9 1.1-3.3 2.3-6.8 3.8-10.3 1.1 2 2.2 4.1 3.4 6.1 1.2 2.2 2.4 4.1 3.6 6.1zm-7-25.5c-1.5-3.5-2.7-6.9-3.8-10.3 3.4-.8 7-1.4 10.8-1.9-1.2 1.9-2.5 3.9-3.6 6-1.2 2.1-2.3 4.2-3.4 6.2zM64 30.2c2.4 2.6 4.7 5.4 6.9 8.3-2.3-.1-4.6-.2-6.9-.2-2.3 0-4.6.1-6.9.2 2.2-2.9 4.5-5.7 6.9-8.3zm22.2 21l-3.6-6c3.8.5 7.4 1.1 10.8 1.9-1.1 3.3-2.3 6.8-3.8 10.3-1.1-2.1-2.2-4.2-3.4-6.2zM31.7 35c-1.7-10.5-.3-17.9 3.8-20.3 1-.6 2.2-.9 3.5-.9 6 0 13.5 4.9 21 12.3-3.5 3.8-7 8.2-10.4 13-5.8.5-11.3 1.4-16.5 2.5-.6-2.3-1-4.5-1.4-6.6zM7 64c0-4.7 5.7-9.7 15.7-13.4 2-.8 4.2-1.5 6.4-2.1 1.6 5 3.6 10.3 6 15.6-2.4 5.3-4.5 10.5-6 15.5C15.3 75.6 7 69.6 7 64zm28.5 49.3c-4.1-2.4-5.5-9.8-3.8-20.3.3-2.1.8-4.3 1.4-6.6 5.2 1.2 10.7 2 16.5 2.5 3.4 4.8 6.9 9.1 10.4 13-7.4 7.3-14.9 12.3-21 12.3-1.3 0-2.5-.3-3.5-.9zM96.3 93c1.7 10.5.3 17.9-3.8 20.3-1 .6-2.2.9-3.5.9-6 0-13.5-4.9-21-12.3 3.5-3.8 7-8.2 10.4-13 5.8-.5 11.3-1.4 16.5-2.5.6 2.3 1 4.5 1.4 6.6zm9-15.6c-2 .8-4.2 1.5-6.4 2.1-1.6-5-3.6-10.3-6-15.6 2.4-5.3 4.5-10.5 6-15.5 13.8 4 22.1 10 22.1 15.6 0 4.7-5.8 9.7-15.7 13.4z"
+          />
+        </g>
+      </symbol>
+      <symbol id="icon-nextjs" viewBox="0 0 128 128">
+        <circle cx="64" cy="64" r="64" />
+        <path
+          fill="url(#stack-nextjs-a)"
+          d="M106.317 112.014 49.167 38.4H38.4v51.179h8.614v-40.24l52.54 67.884a64.216 64.216 0 0 0 6.763-5.209z"
+        />
+        <path fill="url(#stack-nextjs-b)" d="M81.778 38.4h8.533v51.2h-8.533z" />
+        <defs>
+          <linearGradient
+            id="stack-nextjs-a"
+            x1="109"
+            x2="144.5"
+            y1="116.5"
+            y2="160.5"
+            gradientTransform="scale(.71111)"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#fff" />
+            <stop offset="1" stop-color="#fff" stop-opacity="0" />
+          </linearGradient>
+          <linearGradient
+            id="stack-nextjs-b"
+            x1="121"
+            x2="120.799"
+            y1="54"
+            y2="106.875"
+            gradientTransform="scale(.71111)"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#fff" />
+            <stop offset="1" stop-color="#fff" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+      </symbol>
+      <symbol id="icon-typescript" viewBox="0 0 128 128">
+        <path fill="#fff" d="M22.67 47h99.67v73.67H22.67z" />
+        <path
+          data-name="original"
+          fill="#007acc"
+          d="M1.5 63.91v62.5h125v-125H1.5zm100.73-5a15.56 15.56 0 017.82 4.5 20.58 20.58 0 013 4c0 .16-5.4 3.81-8.69 5.85-.12.08-.6-.44-1.13-1.23a7.09 7.09 0 00-5.87-3.53c-3.79-.26-6.23 1.73-6.21 5a4.58 4.58 0 00.54 2.34c.83 1.73 2.38 2.76 7.24 4.86 8.95 3.85 12.78 6.39 15.16 10 2.66 4 3.25 10.46 1.45 15.24-2 5.2-6.9 8.73-13.83 9.9a38.32 38.32 0 01-9.52-.1 23 23 0 01-12.72-6.63c-1.15-1.27-3.39-4.58-3.25-4.82a9.34 9.34 0 011.15-.73L82 101l3.59-2.08.75 1.11a16.78 16.78 0 004.74 4.54c4 2.1 9.46 1.81 12.16-.62a5.43 5.43 0 00.69-6.92c-1-1.39-3-2.56-8.59-5-6.45-2.78-9.23-4.5-11.77-7.24a16.48 16.48 0 01-3.43-6.25 25 25 0 01-.22-8c1.33-6.23 6-10.58 12.82-11.87a31.66 31.66 0 019.49.26zm-29.34 5.24v5.12H56.66v46.23H45.15V69.26H28.88v-5a49.19 49.19 0 01.12-5.17C29.08 59 39 59 51 59h21.83z"
+        />
+      </symbol>
+      <symbol id="icon-nodejs" viewBox="0 0 71 80">
+        <g clipPath="url(#nodejs-mark-clip)" fill="#5FA04E">
+          <path
+            d="M35.625 79.5c-1.081 0-2.09-.288-3.028-.792l-9.59-5.686c-1.442-.792-.721-1.08-.289-1.224 1.947-.648 2.308-.792 4.327-1.944.216-.144.504-.072.72.072l7.356 4.391c.288.144.649.144.865 0l28.77-16.628c.289-.144.433-.431.433-.791V23.714c0-.36-.144-.648-.432-.792L35.986 6.366c-.288-.144-.65-.144-.865 0L6.35 22.922c-.29.144-.434.504-.434.792v33.184c0 .287.145.647.433.791l7.86 4.535c4.254 2.16 6.922-.36 6.922-2.879V26.593c0-.432.36-.864.865-.864h3.678c.432 0 .865.36.865.864v32.752c0 5.687-3.1 8.998-8.509 8.998-1.658 0-2.956 0-6.633-1.8l-7.572-4.319A6.073 6.073 0 0 1 .798 56.97V23.786a6.073 6.073 0 0 1 3.028-5.255l28.77-16.628c1.804-1.008 4.255-1.008 6.058 0l28.77 16.628a6.073 6.073 0 0 1 3.029 5.255V56.97a6.073 6.073 0 0 1-3.029 5.254l-28.77 16.628c-.865.36-1.947.648-3.029.648Z"
+          />
+          <path
+            d="M44.567 56.682c-12.62 0-15.215-5.759-15.215-10.654 0-.432.36-.864.865-.864h3.75c.433 0 .793.288.793.72.577 3.815 2.235 5.687 9.879 5.687 6.057 0 8.652-1.368 8.652-4.607 0-1.871-.72-3.24-10.167-4.175-7.86-.792-12.762-2.52-12.762-8.782 0-5.83 4.903-9.285 13.123-9.285 9.23 0 13.772 3.167 14.35 10.077 0 .216-.073.432-.217.648-.144.144-.36.288-.577.288h-3.822a.844.844 0 0 1-.793-.648c-.865-3.96-3.1-5.255-9.013-5.255-6.634 0-7.427 2.304-7.427 4.031 0 2.088.937 2.736 9.879 3.887 8.869 1.152 13.05 2.808 13.05 8.998 0 6.335-5.263 9.934-14.348 9.934Z"
+          />
+        </g>
+        <defs>
+          <clipPath id="nodejs-mark-clip">
+            <path fill="#fff" d="M0 .5h71v79H0z" />
+          </clipPath>
+        </defs>
+      </symbol>
+      <symbol id="icon-python" viewBox="0 0 128 128">
+        <linearGradient
+          id="stack-python-python-original-a"
+          gradientUnits="userSpaceOnUse"
+          x1="70.252"
+          y1="1237.476"
+          x2="170.659"
+          y2="1151.089"
+          gradientTransform="matrix(.563 0 0 -.568 -29.215 707.817)"
+        >
+          <stop offset="0" stop-color="#5A9FD4" />
+          <stop offset="1" stop-color="#306998" />
+        </linearGradient>
+        <linearGradient
+          id="stack-python-python-original-b"
+          gradientUnits="userSpaceOnUse"
+          x1="209.474"
+          y1="1098.811"
+          x2="173.62"
+          y2="1149.537"
+          gradientTransform="matrix(.563 0 0 -.568 -29.215 707.817)"
+        >
+          <stop offset="0" stop-color="#FFD43B" />
+          <stop offset="1" stop-color="#FFE873" />
+        </linearGradient>
+        <path
+          fill="url(#stack-python-python-original-a)"
+          d="M63.391 1.988c-4.222.02-8.252.379-11.8 1.007-10.45 1.846-12.346 5.71-12.346 12.837v9.411h24.693v3.137H29.977c-7.176 0-13.46 4.313-15.426 12.521-2.268 9.405-2.368 15.275 0 25.096 1.755 7.311 5.947 12.519 13.124 12.519h8.491V67.234c0-8.151 7.051-15.34 15.426-15.34h24.665c6.866 0 12.346-5.654 12.346-12.548V15.833c0-6.693-5.646-11.72-12.346-12.837-4.244-.706-8.645-1.027-12.866-1.008zM50.037 9.557c2.55 0 4.634 2.117 4.634 4.721 0 2.593-2.083 4.69-4.634 4.69-2.56 0-4.633-2.097-4.633-4.69-.001-2.604 2.073-4.721 4.633-4.721z"
+          transform="translate(0 10.26)"
+        />
+        <path
+          fill="url(#stack-python-python-original-b)"
+          d="M91.682 28.38v10.966c0 8.5-7.208 15.655-15.426 15.655H51.591c-6.756 0-12.346 5.783-12.346 12.549v23.515c0 6.691 5.818 10.628 12.346 12.547 7.816 2.297 15.312 2.713 24.665 0 6.216-1.801 12.346-5.423 12.346-12.547v-9.412H63.938v-3.138h37.012c7.176 0 9.852-5.005 12.348-12.519 2.578-7.735 2.467-15.174 0-25.096-1.774-7.145-5.161-12.521-12.348-12.521h-9.268zM77.809 87.927c2.561 0 4.634 2.097 4.634 4.692 0 2.602-2.074 4.719-4.634 4.719-2.55 0-4.633-2.117-4.633-4.719 0-2.595 2.083-4.692 4.633-4.692z"
+          transform="translate(0 10.26)"
+        />
+        <radialGradient
+          id="stack-python-python-original-c"
+          cx="1825.678"
+          cy="444.45"
+          r="26.743"
+          gradientTransform="matrix(0 -.24 -1.055 0 532.979 557.576)"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0" stop-color="#B8B8B8" stop-opacity=".498" />
+          <stop offset="1" stop-color="#7F7F7F" stop-opacity="0" />
+        </radialGradient>
+        <path
+          opacity=".444"
+          fill="url(#stack-python-python-original-c)"
+          d="M97.309 119.597c0 3.543-14.816 6.416-33.091 6.416-18.276 0-33.092-2.873-33.092-6.416 0-3.544 14.815-6.417 33.092-6.417 18.275 0 33.091 2.872 33.091 6.417z"
+        />
+      </symbol>
+      <symbol id="icon-postgresql" viewBox="0 0 128 128">
+        <path
+          d="M93.809 92.112c.785-6.533.55-7.492 5.416-6.433l1.235.108c3.742.17 8.637-.602 11.513-1.938 6.191-2.873 9.861-7.668 3.758-6.409-13.924 2.873-14.881-1.842-14.881-1.842 14.703-21.815 20.849-49.508 15.543-56.287-14.47-18.489-39.517-9.746-39.936-9.52l-.134.025c-2.751-.571-5.83-.912-9.289-.968-6.301-.104-11.082 1.652-14.709 4.402 0 0-44.683-18.409-42.604 23.151.442 8.841 12.672 66.898 27.26 49.362 5.332-6.412 10.484-11.834 10.484-11.834 2.558 1.699 5.622 2.567 8.834 2.255l.249-.212c-.078.796-.044 1.575.099 2.497-3.757 4.199-2.653 4.936-10.166 6.482-7.602 1.566-3.136 4.355-.221 5.084 3.535.884 11.712 2.136 17.238-5.598l-.22.882c1.474 1.18 1.375 8.477 1.583 13.69.209 5.214.558 10.079 1.621 12.948 1.063 2.868 2.317 10.256 12.191 8.14 8.252-1.764 14.561-4.309 15.136-27.985"
+        />
+        <path
+          d="M75.458 125.256c-4.367 0-7.211-1.689-8.938-3.32-2.607-2.46-3.641-5.629-4.259-7.522l-.267-.79c-1.244-3.358-1.666-8.193-1.916-14.419-.038-.935-.064-1.898-.093-2.919-.021-.747-.047-1.684-.085-2.664a18.8 18.8 0 01-4.962 1.568c-3.079.526-6.389.356-9.84-.507-2.435-.609-4.965-1.871-6.407-3.82-4.203 3.681-8.212 3.182-10.396 2.453-3.853-1.285-7.301-4.896-10.542-11.037-2.309-4.375-4.542-10.075-6.638-16.943-3.65-11.96-5.969-24.557-6.175-28.693C4.292 23.698 7.777 14.44 15.296 9.129 27.157.751 45.128 5.678 51.68 7.915c4.402-2.653 9.581-3.944 15.433-3.851 3.143.051 6.136.327 8.916.823 2.9-.912 8.628-2.221 15.185-2.139 12.081.144 22.092 4.852 28.949 13.615 4.894 6.252 2.474 19.381.597 26.651-2.642 10.226-7.271 21.102-12.957 30.57 1.544.011 3.781-.174 6.961-.831 6.274-1.295 8.109 2.069 8.607 3.575 1.995 6.042-6.677 10.608-9.382 11.864-3.466 1.609-9.117 2.589-13.745 2.377l-.202-.013-1.216-.107-.12 1.014-.116.991c-.311 11.999-2.025 19.598-5.552 24.619-3.697 5.264-8.835 6.739-13.361 7.709-1.544.33-2.947.474-4.219.474zm-9.19-43.671c2.819 2.256 3.066 6.501 3.287 14.434.028.99.054 1.927.089 2.802.106 2.65.355 8.855 1.327 11.477.137.371.26.747.39 1.146 1.083 3.316 1.626 4.979 6.309 3.978 3.931-.843 5.952-1.599 7.534-3.851 2.299-3.274 3.585-9.86 3.821-19.575l4.783.116-4.75-.57.14-1.186c.455-3.91.783-6.734 3.396-8.602 2.097-1.498 4.486-1.353 6.389-1.01-2.091-1.58-2.669-3.433-2.823-4.193l-.399-1.965 1.121-1.663c6.457-9.58 11.781-21.354 14.609-32.304 2.906-11.251 2.02-17.226 1.134-18.356-11.729-14.987-32.068-8.799-34.192-8.097l-.359.194-1.8.335-.922-.191c-2.542-.528-5.366-.82-8.393-.869-4.756-.08-8.593 1.044-11.739 3.431l-2.183 1.655-2.533-1.043c-5.412-2.213-21.308-6.662-29.696-.721-4.656 3.298-6.777 9.76-6.305 19.207.156 3.119 2.275 14.926 5.771 26.377 4.831 15.825 9.221 21.082 11.054 21.693.32.108 1.15-.537 1.976-1.529a270.708 270.708 0 0110.694-12.07l2.77-2.915 3.349 2.225c1.35.897 2.839 1.406 4.368 1.502l7.987-6.812-1.157 11.808c-.026.265-.039.626.065 1.296l.348 2.238-1.51 1.688-.174.196 4.388 2.025 1.836-2.301z"
+        />
+        <path
+          fill="#336791"
+          d="M115.731 77.44c-13.925 2.873-14.882-1.842-14.882-1.842 14.703-21.816 20.849-49.51 15.545-56.287C101.924.823 76.875 9.566 76.457 9.793l-.135.024c-2.751-.571-5.83-.911-9.291-.967-6.301-.103-11.08 1.652-14.707 4.402 0 0-44.684-18.408-42.606 23.151.442 8.842 12.672 66.899 27.26 49.363 5.332-6.412 10.483-11.834 10.483-11.834 2.559 1.699 5.622 2.567 8.833 2.255l.25-.212c-.078.796-.042 1.575.1 2.497-3.758 4.199-2.654 4.936-10.167 6.482-7.602 1.566-3.136 4.355-.22 5.084 3.534.884 11.712 2.136 17.237-5.598l-.221.882c1.473 1.18 2.507 7.672 2.334 13.557-.174 5.885-.29 9.926.871 13.082 1.16 3.156 2.316 10.256 12.192 8.14 8.252-1.768 12.528-6.351 13.124-13.995.422-5.435 1.377-4.631 1.438-9.49l.767-2.3c.884-7.367.14-9.743 5.225-8.638l1.235.108c3.742.17 8.639-.602 11.514-1.938 6.19-2.871 9.861-7.667 3.758-6.408z"
+        />
+        <path
+          fill="#fff"
+          d="M75.957 122.307c-8.232 0-10.84-6.519-11.907-9.185-1.562-3.907-1.899-19.069-1.551-31.503a1.59 1.59 0 011.64-1.55 1.594 1.594 0 011.55 1.639c-.401 14.341.168 27.337 1.324 30.229 1.804 4.509 4.54 8.453 12.275 6.796 7.343-1.575 10.093-4.359 11.318-11.46.94-5.449 2.799-20.951 3.028-24.01a1.593 1.593 0 011.71-1.472 1.597 1.597 0 011.472 1.71c-.239 3.185-2.089 18.657-3.065 24.315-1.446 8.387-5.185 12.191-13.794 14.037-1.463.313-2.792.453-4 .454zM31.321 90.466a6.71 6.71 0 01-2.116-.35c-5.347-1.784-10.44-10.492-15.138-25.885-3.576-11.717-5.842-23.947-6.041-27.922-.589-11.784 2.445-20.121 9.02-24.778 13.007-9.216 34.888-.44 35.813-.062a1.596 1.596 0 01-1.207 2.955c-.211-.086-21.193-8.492-32.768-.285-5.622 3.986-8.203 11.392-7.672 22.011.167 3.349 2.284 15.285 5.906 27.149 4.194 13.742 8.967 22.413 13.096 23.79.648.216 2.62.873 5.439-2.517A245.272 245.272 0 0145.88 73.046a1.596 1.596 0 012.304 2.208c-.048.05-4.847 5.067-10.077 11.359-2.477 2.979-4.851 3.853-6.786 3.853zm69.429-13.445a1.596 1.596 0 01-1.322-2.487c14.863-22.055 20.08-48.704 15.612-54.414-5.624-7.186-13.565-10.939-23.604-11.156-7.433-.16-13.341 1.738-14.307 2.069l-.243.099c-.971.305-1.716-.227-1.997-.849a1.6 1.6 0 01.631-2.025c.046-.027.192-.089.429-.176l-.021.006.021-.007c1.641-.601 7.639-2.4 15.068-2.315 11.108.118 20.284 4.401 26.534 12.388 2.957 3.779 2.964 12.485.019 23.887-3.002 11.625-8.651 24.118-15.497 34.277-.306.457-.81.703-1.323.703zm.76 10.21c-2.538 0-4.813-.358-6.175-1.174-1.4-.839-1.667-1.979-1.702-2.584-.382-6.71 3.32-7.878 5.208-8.411-.263-.398-.637-.866-1.024-1.349-1.101-1.376-2.609-3.26-3.771-6.078-.182-.44-.752-1.463-1.412-2.648-3.579-6.418-11.026-19.773-6.242-26.612 2.214-3.165 6.623-4.411 13.119-3.716C97.6 28.837 88.5 10.625 66.907 10.271c-6.494-.108-11.82 1.889-15.822 5.93-8.96 9.049-8.636 25.422-8.631 25.586a1.595 1.595 0 11-3.19.084c-.02-.727-.354-17.909 9.554-27.916C53.455 9.272 59.559 6.96 66.96 7.081c13.814.227 22.706 7.25 27.732 13.101 5.479 6.377 8.165 13.411 8.386 15.759.165 1.746-1.088 2.095-1.341 2.147l-.576.013c-6.375-1.021-10.465-.312-12.156 2.104-3.639 5.201 3.406 17.834 6.414 23.229.768 1.376 1.322 2.371 1.576 2.985.988 2.396 2.277 4.006 3.312 5.3.911 1.138 1.7 2.125 1.982 3.283.131.23 1.99 2.98 13.021.703 2.765-.57 4.423-.083 4.93 1.45.997 3.015-4.597 6.532-7.694 7.97-2.775 1.29-7.204 2.106-11.036 2.106zm-4.696-4.021c.35.353 2.101.962 5.727.806 3.224-.138 6.624-.839 8.664-1.786 2.609-1.212 4.351-2.567 5.253-3.492l-.5.092c-7.053 1.456-12.042 1.262-14.828-.577a6.162 6.162 0 01-.54-.401c-.302.119-.581.197-.78.253-1.58.443-3.214.902-2.996 5.105zm-45.562 8.915c-1.752 0-3.596-.239-5.479-.71-1.951-.488-5.24-1.957-5.19-4.37.057-2.707 3.994-3.519 5.476-3.824 5.354-1.103 5.703-1.545 7.376-3.67.488-.619 1.095-1.39 1.923-2.314 1.229-1.376 2.572-2.073 3.992-2.073.989 0 1.8.335 2.336.558 1.708.708 3.133 2.42 3.719 4.467.529 1.847.276 3.625-.71 5.006-3.237 4.533-7.886 6.93-13.443 6.93zm-7.222-4.943c.481.372 1.445.869 2.518 1.137 1.631.408 3.213.615 4.705.615 4.546 0 8.196-1.882 10.847-5.594.553-.774.387-1.757.239-2.274-.31-1.083-1.08-2.068-1.873-2.397-.43-.178-.787-.314-1.115-.314-.176 0-.712 0-1.614 1.009a41.146 41.146 0 00-1.794 2.162c-2.084 2.646-3.039 3.544-9.239 4.821-1.513.31-2.289.626-2.674.835zm12.269-7.36a1.596 1.596 0 01-1.575-1.354 8.218 8.218 0 01-.08-.799c-4.064-.076-7.985-1.82-10.962-4.926-3.764-3.927-5.477-9.368-4.699-14.927.845-6.037.529-11.366.359-14.229-.047-.796-.081-1.371-.079-1.769.003-.505.013-1.844 4.489-4.113 1.592-.807 4.784-2.215 8.271-2.576 5.777-.597 9.585 1.976 10.725 7.246 3.077 14.228.244 20.521-1.825 25.117-.385.856-.749 1.664-1.04 2.447l-.257.69c-1.093 2.931-2.038 5.463-1.748 7.354a1.595 1.595 0 01-1.335 1.819l-.244.02zM42.464 42.26l.062 1.139c.176 2.974.504 8.508-.384 14.86-.641 4.585.759 9.06 3.843 12.276 2.437 2.542 5.644 3.945 8.94 3.945h.068c.369-1.555.982-3.197 1.642-4.966l.255-.686c.329-.884.714-1.74 1.122-2.646 1.991-4.424 4.47-9.931 1.615-23.132-.565-2.615-1.936-4.128-4.189-4.627-4.628-1.022-11.525 2.459-12.974 3.837zm9.63-.677c-.08.564 1.033 2.07 2.485 2.271 1.449.203 2.689-.975 2.768-1.539.079-.564-1.033-1.186-2.485-1.388-1.451-.202-2.691.092-2.768.656zm2.818 2.826l-.407-.028c-.9-.125-1.81-.692-2.433-1.518-.219-.29-.576-.852-.505-1.354.101-.736.999-1.177 2.4-1.177.313 0 .639.023.967.069.766.106 1.477.327 2.002.62.91.508.977 1.075.936 1.368-.112.813-1.405 2.02-2.96 2.02zm-2.289-2.732c.045.348.907 1.496 2.029 1.651l.261.018c1.036 0 1.81-.815 1.901-1.082-.096-.182-.762-.634-2.025-.81a5.823 5.823 0 00-.821-.059c-.812 0-1.243.183-1.345.282zm43.605-1.245c.079.564-1.033 2.07-2.484 2.272-1.45.202-2.691-.975-2.771-1.539-.076-.564 1.036-1.187 2.486-1.388 1.45-.203 2.689.092 2.769.655zm-2.819 2.56c-1.396 0-2.601-1.086-2.7-1.791-.115-.846 1.278-1.489 2.712-1.688.316-.044.629-.066.93-.066 1.238 0 2.058.363 2.14.949.053.379-.238.964-.739 1.492-.331.347-1.026.948-1.973 1.079l-.37.025zm.943-3.013c-.276 0-.564.021-.856.061-1.441.201-2.301.779-2.259 1.089.048.341.968 1.332 2.173 1.332l.297-.021c.787-.109 1.378-.623 1.66-.919.443-.465.619-.903.598-1.052-.028-.198-.56-.49-1.613-.49zm3.965 32.843a1.594 1.594 0 01-1.324-2.483c3.398-5.075 2.776-10.25 2.175-15.255-.257-2.132-.521-4.337-.453-6.453.07-2.177.347-3.973.614-5.71.317-2.058.617-4.002.493-6.31a1.595 1.595 0 113.186-.172c.142 2.638-.197 4.838-.525 6.967-.253 1.643-.515 3.342-.578 5.327-.061 1.874.178 3.864.431 5.97.64 5.322 1.365 11.354-2.691 17.411a1.596 1.596 0 01-1.328.708z"
+        />
+      </symbol>
+      <symbol id="icon-docker" viewBox="0 0 340 268">
+        <!-- Generator: Adobe Illustrator 30.1.0, SVG Export Plug-In . SVG Version: 2.1.1 Build 136)  -->
+        <defs>
+          <clipPath id="stack-docker-official-clippath">
+            <rect fill="none" width="339.5" height="268" />
+          </clipPath>
+        </defs>
+        <g clip-path="url(#stack-docker-official-clippath)">
+          <path
+            fill="#2560ff"
+            d="M334,110.1c-8.3-5.6-30.2-8-46.1-3.7-.9-15.8-9-29.2-24-40.8l-5.5-3.7-3.7,5.6c-7.2,11-10.3,25.7-9.2,39,.8,8.2,3.7,17.4,9.2,24.1-20.7,12-39.8,9.3-124.3,9.3H0c-.4,19.1,2.7,55.8,26,85.6,2.6,3.3,5.4,6.5,8.5,9.6,19,19,47.6,32.9,90.5,33,65.4,0,121.4-35.3,155.5-120.8,11.2.2,40.8,2,55.3-26,.4-.5,3.7-7.4,3.7-7.4l-5.5-3.7h0ZM85.2,92.7h-36.7v36.7h36.7v-36.7ZM132.6,92.7h-36.7v36.7h36.7v-36.7ZM179.9,92.7h-36.7v36.7h36.7v-36.7ZM227.3,92.7h-36.7v36.7h36.7v-36.7ZM37.8,92.7H1.1v36.7h36.7v-36.7ZM85.2,46.3h-36.7v36.7h36.7v-36.7ZM132.6,46.3h-36.7v36.7h36.7v-36.7ZM179.9,46.3h-36.7v36.7h36.7v-36.7ZM179.9,0h-36.7v36.7h36.7V0Z"
+          />
+        </g>
+      </symbol>
+      <symbol id="icon-aws" viewBox="0 0 128 128">
+        <path
+          d="M31 96a22 22 0 0 1-2-44 35 35 0 0 1 66-1 23 23 0 0 1 0 45H31Z"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M48 70h31m-31 12h21"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="6"
+          stroke-linecap="round"
+        />
+      </symbol>
+      <symbol id="icon-arrow" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M5 12h13m-5-5 5 5-5 5" />
+        </g>
+      </symbol>
+      <symbol id="icon-down" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M12 5v13m-5-5 5 5 5-5" />
+        </g>
+      </symbol>
+      <symbol id="icon-chart" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M4 20h16M7 16v-4m5 4V8m5 8V4" />
+        </g>
+      </symbol>
+      <symbol id="icon-database" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <ellipse cx="12" cy="6" rx="7" ry="3" />
+          <path
+            d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"
+          />
+        </g>
+      </symbol>
+      <symbol id="icon-external" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M6 18 18 6M8 6h10v10" />
+        </g>
+      </symbol>
+      <symbol id="icon-web" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="3" y="4" width="18" height="16" rx="2" />
+          <path d="M3 8h18m-11 4-2 2 2 2m4-4 2 2-2 2" />
+        </g>
+      </symbol>
+      <symbol id="icon-layout" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="3" y="4" width="18" height="16" rx="2" />
+          <path d="M3 9h18M9 9v11m3-7h5m-5 3h3" />
+        </g>
+      </symbol>
+      <symbol id="icon-shield" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m12 3 7 3v5c0 4-2.5 7.2-7 10-4.5-2.8-7-6-7-10V6l7-3Z" />
+          <path d="m9 12 2 2 4-4" />
+        </g>
+      </symbol>
+      <symbol id="icon-cloud" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M6.6 18a4.6 4.6 0 0 1-.8-9.1 6.3 6.3 0 0 1 12.1 1.4A3.9 3.9 0 1 1 18 18H6.6Z"
+          />
+        </g>
+      </symbol>
+      <symbol id="icon-whatsapp" viewBox="0 0 24 24">
+        <path
+          fill="currentColor"
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+        />
+      </symbol>
+      <symbol id="icon-angular" viewBox="0 0 128 128">
+        <linearGradient
+          id="stack-angular-gradient-a"
+          x1="14.704"
+          x2="110.985"
+          y1="46.27"
+          y2="92.024"
+          gradientTransform="matrix(1 0 0 -1 0 130)"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0" stop-color="#e40035" />
+          <stop offset=".24" stop-color="#f60a48" />
+          <stop offset=".352" stop-color="#f20755" />
+          <stop offset=".494" stop-color="#dc087d" />
+          <stop offset=".745" stop-color="#9717e7" />
+          <stop offset="1" stop-color="#6c00f5" />
+        </linearGradient>
+        <path
+          fill="url(#stack-angular-gradient-a)"
+          d="m124.5 21.3-4.4 68.6L78.3 0l46.2 21.3zm-29 88.7L64 128l-31.5-18 6.4-15.5h50.3l6.3 15.5zM64 34.1l16.5 40.2h-33L64 34.1zM7.9 89.9 3.5 21.3 49.7 0 7.9 89.9z"
+        />
+        <linearGradient
+          id="stack-angular-gradient-b"
+          x1="28.733"
+          x2="91.742"
+          y1="117.071"
+          y2="45.195"
+          gradientTransform="matrix(1 0 0 -1 0 130)"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0" stop-color="#ff31d9" />
+          <stop offset="1" stop-color="#ff5be1" stop-opacity="0" />
+        </linearGradient>
+        <path
+          fill="url(#stack-angular-gradient-b)"
+          d="m124.5 21.3-4.4 68.6L78.3 0l46.2 21.3zm-29 88.7L64 128l-31.5-18 6.4-15.5h50.3l6.3 15.5zM64 34.1l16.5 40.2h-33L64 34.1zM7.9 89.9 3.5 21.3 49.7 0 7.9 89.9z"
+        />
+      </symbol>
+      <symbol id="icon-javascript" viewBox="0 0 128 128">
+        <path fill="#F0DB4F" d="M1.408 1.408h125.184v125.185H1.408z" />
+        <path
+          fill="#323330"
+          d="M116.347 96.736c-.917-5.711-4.641-10.508-15.672-14.981-3.832-1.761-8.104-3.022-9.377-5.926-.452-1.69-.512-2.642-.226-3.665.821-3.32 4.784-4.355 7.925-3.403 2.023.678 3.938 2.237 5.093 4.724 5.402-3.498 5.391-3.475 9.163-5.879-1.381-2.141-2.118-3.129-3.022-4.045-3.249-3.629-7.676-5.498-14.756-5.355l-3.688.477c-3.534.893-6.902 2.748-8.877 5.235-5.926 6.724-4.236 18.492 2.975 23.335 7.104 5.332 17.54 6.545 18.873 11.531 1.297 6.104-4.486 8.08-10.234 7.378-4.236-.881-6.592-3.034-9.139-6.949-4.688 2.713-4.688 2.713-9.508 5.485 1.143 2.499 2.344 3.63 4.26 5.795 9.068 9.198 31.76 8.746 35.83-5.176.165-.478 1.261-3.666.38-8.581zM69.462 58.943H57.753l-.048 30.272c0 6.438.333 12.34-.714 14.149-1.713 3.558-6.152 3.117-8.175 2.427-2.059-1.012-3.106-2.451-4.319-4.485-.333-.584-.583-1.036-.667-1.071l-9.52 5.83c1.583 3.249 3.915 6.069 6.902 7.901 4.462 2.678 10.459 3.499 16.731 2.059 4.082-1.189 7.604-3.652 9.448-7.401 2.666-4.915 2.094-10.864 2.07-17.444.06-10.735.001-21.468.001-32.237z"
+        />
+      </symbol>
+      <symbol id="icon-css3" viewBox="0 0 128 128">
+        <path
+          fill="#1572B6"
+          d="M18.814 114.123L8.76 1.352h110.48l-10.064 112.754-45.243 12.543-45.119-12.526z"
+        />
+        <path
+          fill="#33A9DC"
+          d="M64.001 117.062l36.559-10.136 8.601-96.354h-45.16v106.49z"
+        />
+        <path
+          fill="#fff"
+          d="M64.001 51.429h18.302l1.264-14.163H64.001V23.435h34.682l-.332 3.711-3.4 38.114h-30.95V51.429z"
+        />
+        <path
+          fill="#EBEBEB"
+          d="M64.083 87.349l-.061.018-15.403-4.159-.985-11.031H33.752l1.937 21.717 28.331 7.863.063-.018v-14.39z"
+        />
+        <path
+          fill="#fff"
+          d="M81.127 64.675l-1.666 18.522-15.426 4.164v14.39l28.354-7.858.208-2.337 2.406-26.881H81.127z"
+        />
+        <path
+          fill="#EBEBEB"
+          d="M64.048 23.435v13.831H30.64l-.277-3.108-.63-7.012-.331-3.711h34.646zm-.047 27.996v13.831H48.792l-.277-3.108-.631-7.012-.33-3.711h16.447z"
+        />
+      </symbol>
+      <symbol id="icon-figma" viewBox="0 0 128 128">
+        <path
+          fill="#0acf83"
+          d="M45.5 129c11.9 0 21.5-9.6 21.5-21.5V86H45.5C33.6 86 24 95.6 24 107.5S33.6 129 45.5 129zm0 0"
+        />
+        <path
+          fill="#a259ff"
+          d="M24 64.5C24 52.6 33.6 43 45.5 43H67v43H45.5C33.6 86 24 76.4 24 64.5zm0 0"
+        />
+        <path
+          fill="#f24e1e"
+          d="M24 21.5C24 9.6 33.6 0 45.5 0H67v43H45.5C33.6 43 24 33.4 24 21.5zm0 0"
+        />
+        <path
+          fill="#ff7262"
+          d="M67 0h21.5C100.4 0 110 9.6 110 21.5S100.4 43 88.5 43H67zm0 0"
+        />
+        <path
+          fill="#1abcfe"
+          d="M110 64.5c0 11.9-9.6 21.5-21.5 21.5S67 76.4 67 64.5 76.6 43 88.5 43 110 52.6 110 64.5zm0 0"
+        />
+      </symbol>
+      <symbol id="icon-wordpress" viewBox="0 0 128 128">
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          fill="currentColor"
+          d="M64.094 126.224c34.275-.052 62.021-27.933 62.021-62.325 0-33.833-27.618-61.697-60.613-62.286C30.85.995 1.894 29.113 1.885 63.21c-.01 35.079 27.612 63.064 62.209 63.014zM63.993 4.63c32.907-.011 59.126 26.725 59.116 60.28-.011 31.679-26.925 58.18-59.092 58.187-32.771.007-59.125-26.563-59.124-59.608.002-32.193 26.766-58.848 59.1-58.859zM39.157 35.896c.538 1.793-.968 2.417-2.569 2.542-1.685.13-3.369.257-5.325.406 6.456 19.234 12.815 38.183 19.325 57.573.464-.759.655-.973.739-1.223 3.574-10.682 7.168-21.357 10.651-32.069.318-.977.16-2.271-.188-3.275-1.843-5.32-4.051-10.524-5.667-15.908-1.105-3.686-2.571-6.071-6.928-5.644-.742.073-1.648-1.524-2.479-2.349 1.005-.6 2.003-1.704 3.017-1.719a849.593 849.593 0 0126.618.008c1.018.017 2.016 1.15 3.021 1.765-.88.804-1.639 2.01-2.668 2.321-1.651.498-3.482.404-5.458.58l19.349 57.56c2.931-9.736 5.658-18.676 8.31-27.639 2.366-8.001.956-15.473-3.322-22.52-1.286-2.119-2.866-4.175-3.595-6.486-.828-2.629-1.516-5.622-1.077-8.259.745-4.469 4.174-6.688 8.814-7.113C74.333.881 34.431 9.317 19.728 34.922c5.66-.261 11.064-.604 16.472-.678 1.022-.013 2.717.851 2.957 1.652zm10.117 77.971c-.118.345-.125.729-.218 1.302 10.943 3.034 21.675 2.815 32.659-.886l-16.78-45.96c-5.37 15.611-10.52 30.575-15.661 45.544zm-8.456-2.078l-25.281-69.35c-11.405 22.278-2.729 56.268 25.281 69.35zm76.428-44.562c.802-10.534-2.832-25.119-5.97-27.125-.35 3.875-.106 8.186-1.218 12.114-2.617 9.255-5.817 18.349-8.899 27.468-3.35 9.912-6.832 19.779-10.257 29.666 16.092-9.539 24.935-23.618 26.344-42.123z"
+        />
+      </symbol>
+      <symbol id="icon-search" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="10.5" cy="10.5" r="5.5" />
+          <path d="m15 15 4.5 4.5m-11-7 1.7-2 1.3 1 1.2-2.2" />
+        </g>
+      </symbol>
+      <symbol id="icon-content" viewBox="0 0 24 24">
+        <g
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="5" y="3" width="14" height="18" rx="2" />
+          <path d="M8 8h8m-8 4h8m-8 4h4" />
+        </g>
+      </symbol>
+    </svg>
+    <div class="ornamentos" aria-hidden="true">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1672 941"
+        preserveAspectRatio="xMidYMid slice"
+        aria-hidden="true"
+      >
+        <defs>
+          <linearGradient id="orn-left-fold" x1="0" x2="1" y1=".3" y2=".8">
+            <stop stop-color="#040305" stop-opacity="0" />
+            <stop offset=".56" stop-color="#291346" stop-opacity=".37" />
+            <stop offset=".8" stop-color="#190b2d" stop-opacity=".52" />
+            <stop offset="1" stop-color="#07040c" stop-opacity=".78" />
+          </linearGradient>
+          <linearGradient id="orn-left-edge" x1=".65" x2=".22" y1="0" y2="1">
+            <stop stop-color="#6422c0" stop-opacity=".82" />
+            <stop offset=".18" stop-color="#4d1e8f" stop-opacity=".27" />
+            <stop offset=".76" stop-color="#501f94" stop-opacity=".11" />
+            <stop offset=".9" stop-color="#7a33dc" stop-opacity=".94" />
+            <stop offset=".95" stop-color="#9f67ea" />
+            <stop offset="1" stop-color="#5f29ab" stop-opacity=".05" />
+          </linearGradient>
+          <radialGradient id="orn-left-light" cx=".35" cy=".68" r=".63">
+            <stop stop-color="#6927c3" stop-opacity=".43" />
+            <stop offset=".48" stop-color="#2e1453" stop-opacity=".23" />
+            <stop offset="1" stop-color="#040305" stop-opacity="0" />
+          </radialGradient>
+          <linearGradient id="orn-code-dark" x1="0" x2=".85" y1="1" y2="0">
+            <stop stop-color="#0e0717" />
+            <stop offset=".42" stop-color="#190c2b" />
+            <stop offset=".66" stop-color="#2d1253" />
+            <stop offset="1" stop-color="#07040b" />
+          </linearGradient>
+          <linearGradient id="orn-code-edge" x1=".25" x2=".8" y1="0" y2="1">
+            <stop stop-color="#6422c0" stop-opacity=".23" />
+            <stop offset=".55" stop-color="#722ed2" stop-opacity=".73" />
+            <stop offset="1" stop-color="#2c0e56" stop-opacity=".17" />
+          </linearGradient>
+          <linearGradient id="orn-right-fold" x1="1" x2=".15" y1="0" y2="1">
+            <stop stop-color="#170a29" stop-opacity=".44" />
+            <stop offset=".64" stop-color="#040305" stop-opacity="0" />
+            <stop offset="1" stop-color="#3e1970" stop-opacity=".49" />
+          </linearGradient>
+          <linearGradient id="orn-right-edge" x1="0" x2="1" y1="0" y2=".9">
+            <stop stop-color="#6422c0" stop-opacity="0" />
+            <stop offset=".68" stop-color="#3f1979" stop-opacity=".24" />
+            <stop offset=".9" stop-color="#6422c0" stop-opacity=".65" />
+            <stop offset="1" stop-color="#af7af7" />
+          </linearGradient>
+          <radialGradient id="orn-right-light" cx="1" cy=".53" r=".61">
+            <stop stop-color="#7935d6" stop-opacity=".49" />
+            <stop offset=".5" stop-color="#6422c0" stop-opacity=".11" />
+            <stop offset="1" stop-color="#040305" stop-opacity="0" />
+          </radialGradient>
+          <linearGradient id="orn-base-line" x1="0" x2="1" y1="0" y2=".1">
+            <stop stop-color="#602fa4" stop-opacity=".74" />
+            <stop offset=".56" stop-color="#301753" stop-opacity=".22" />
+            <stop offset="1" stop-color="#291149" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+
+        <!-- O brilho fica nas dobras periféricas e o miolo permanece transparente. -->
+        <path
+          d="M53 0H86V401c0 37 1 73 24 105l-23 27C43 505 8 463 0 429V371C8 244 27 121 53 0Z"
+          fill="url(#orn-left-fold)"
+        />
+        <path
+          d="M0 400c5 33 32 78 87 117l31 38c-44-17-90-45-118-66Z"
+          fill="url(#orn-left-light)"
+        />
+        <path
+          d="M86 0v402c0 43 2 77 25 109M53 0C26 118 6 247 0 367"
+          fill="none"
+          stroke="#2a124c"
+          stroke-opacity=".55"
+        />
+        <path
+          d="M86 0v402c0 51 4 85 24 112M0 401c0 45 33 88 87 127"
+          fill="none"
+          stroke="url(#orn-left-edge)"
+          stroke-width="1.35"
+        />
+        <path
+          d="M0 420c4 37 41 80 77 102"
+          fill="none"
+          stroke="#8442e2"
+          stroke-opacity=".24"
+          stroke-width="3"
+        />
+        <path
+          d="M0 530c24 30 45 43 71 52l-23 32L0 652Z"
+          fill="#1e0e34"
+          fill-opacity=".14"
+        />
+
+        <!-- Fragmentos facetados evocam colchetes de código no canto inferior. -->
+        <g stroke-linejoin="round">
+          <path
+            d="m56 651 61-65 6 12-16 63-10 7 8-46-48 51Z"
+            fill="url(#orn-code-dark)"
+            stroke="#381962"
+            stroke-opacity=".62"
+          />
+          <path
+            d="m56 651 61-65-6 15-54 72Z"
+            fill="url(#orn-code-edge)"
+            opacity=".62"
+          />
+          <path
+            d="m54 690 79 28-4 17-84-29Z"
+            fill="url(#orn-code-dark)"
+            stroke="#311557"
+            stroke-opacity=".71"
+          />
+          <path
+            d="m54 690 79 28-4 17-73-29-11 0Z"
+            fill="url(#orn-code-edge)"
+            opacity=".64"
+          />
+          <path
+            d="m45 735 76 34-4 15-73-35Z"
+            fill="#23103d"
+            fill-opacity=".61"
+            stroke="#301555"
+            stroke-opacity=".63"
+          />
+          <path
+            d="m88 782 16 31 19-23-5 23-21 31-17-27Z"
+            fill="url(#orn-code-dark)"
+            stroke="#442076"
+            stroke-opacity=".63"
+          />
+          <path
+            d="m88 782 16 31-7 31-17-27Z"
+            fill="url(#orn-code-edge)"
+            opacity=".66"
+          />
+        </g>
+
+        <path
+          d="M1672 249c-28 42-52 89-58 145-8 70 19 129 58 172Z"
+          fill="url(#orn-right-fold)"
+        />
+        <path
+          d="M1672 250c-28 41-50 86-58 142-8 65 20 133 58 175"
+          fill="none"
+          stroke="#311952"
+          stroke-opacity=".39"
+        />
+        <path
+          d="M1587 485c31 36 56 63 85 81v88c-13-34-28-61-47-83-12-14-27-30-44-44Z"
+          fill="url(#orn-right-light)"
+        />
+        <path
+          d="M1559 478c32 27 65 64 113 89"
+          fill="none"
+          stroke="url(#orn-right-edge)"
+          stroke-width="1.45"
+        />
+        <path
+          d="M1632 540c13 11 26 21 40 27"
+          fill="none"
+          stroke="#803ed8"
+          stroke-opacity=".29"
+          stroke-width="3.25"
+        />
+
+        <g fill="none" stroke="url(#orn-base-line)">
+          <path d="M0 893h1672" stroke-width="1.3" />
+          <path d="m485 893 112-132 102-38" stroke-opacity=".59" />
+          <path d="m1111 894 103-71 87-31" stroke-opacity=".24" />
+        </g>
+      </svg>
+    </div>
+    <a class="skip" href="#conteudo">Ir para o conteúdo</a>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a
+          class="brand"
+          href="#inicio"
+          aria-label="Lukas Martins Oliveira, início"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 54 26"
+            fill="none"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path
+              d="M4 5v13.5l3 3h13M27 21.5V5l11.5 10L50 5v16.5"
+              stroke="currentColor"
+              stroke-width="2.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="m20 21.5 4-4"
+              stroke="var(--brand-detail, currentColor)"
+              stroke-width="2.6"
+              stroke-linecap="round"
+            />
+          </svg>
+          <span class="brand-signal" aria-hidden="true">
+            <span class="satellite"></span>
+            <span></span>
+            <span class="satellite"></span>
+          </span>
+        </a>
+        <nav class="main-nav portfolio-nav" aria-label="Navegação principal">
+          <a href="#projetos">Projetos</a>
+          <a href="#servicos">Serviços</a>
+          <a href="#sobre">Perfil</a>
+          <a href="#empresa">Empresa</a>
+          <a href="projeto-bi.html" data-theme-link>BI</a>
+          <a href="#contato">Contato</a>
+        </nav>
+        <div class="theme-picker" role="group" aria-label="Tema do site">
+          <button
+            type="button"
+            data-theme-choice="light"
+            aria-label="Claro"
+            title="Tema claro"
+            aria-pressed="false"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="4" />
+              <path
+                d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"
+              />
+            </svg>
+          </button>
+          <button
+            type="button"
+            data-theme-choice="dark"
+            aria-label="Escuro"
+            title="Tema escuro"
+            aria-pressed="true"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M20.5 15A8.5 8.5 0 0 1 9 3.5 8.5 8.5 0 1 0 20.5 15Z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="conteudo" tabindex="-1">
+      <section class="wrap hero" aria-labelledby="nome">
+        <div class="hero-copy">
+          <p class="kicker">Desenvolvedor Full Stack</p>
+          <h1 id="nome">
+            Lukas <span class="surname">Martins</span
+            ><span class="visually-hidden"> Oliveira</span>
+          </h1>
+          <p class="role">Sites e sistemas sob medida</p>
+          <p class="intro">
+            Desenho e desenvolvo sites, lojas virtuais e sistemas para
+            apresentar seu negócio, vender online e organizar processos.
+          </p>
+          <div class="actions">
+            <a class="action primary" href="#contato"
+              >Falar sobre um projeto
+              <svg aria-hidden="true" focusable="false">
+                <use href="#icon-arrow"></use></svg
+            ></a>
+            <a class="action" href="#projetos"
+              >Ver projetos
+              <svg
+                class="stack-symbol stack-symbol--down"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <use href="#icon-down"></use></svg
+            ></a>
+          </div>
+        </div>
+
+        <div class="stage">
+          <img
+            src="retrato-lukas-moletom.webp"
+            alt="Lukas Martins Oliveira com moletom preto"
+            width="1043"
+            height="1219"
+            fetchpriority="high"
+          />
+        </div>
+      </section>
+
+      <section class="wrap stack" aria-labelledby="tecnologias">
+        <h2 id="tecnologias">
+          <span class="stack-heading-mark">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path d="m8 6-6 6 6 6m8-12 6 6-6 6m-2-15-4 18" />
+            </svg>
+          </span>
+          <span>Stack e ferramentas</span>
+        </h2>
+        <ul>
+          <li>
+            <svg
+              class="stack-symbol stack-symbol--react"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <use href="#icon-react"></use></svg
+            ><span>React</span>
+          </li>
+          <li>
+            <svg
+              class="stack-symbol stack-symbol--angular"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <use href="#icon-angular"></use></svg
+            ><span>Angular</span>
+          </li>
+          <li>
+            <svg
+              class="stack-symbol stack-symbol--nextjs"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <use href="#icon-nextjs"></use></svg
+            ><span>Next.js</span>
+          </li>
+          <li>
+            <svg
+              class="stack-symbol stack-symbol--typescript"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <use href="#icon-typescript"></use></svg
+            ><span>TypeScript</span>
+          </li>
+          <li>
+            <svg
+              class="stack-symbol stack-symbol--javascript"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <use href="#icon-javascript"></use></svg
+            ><span>JavaScript</span>
+          </li>
+          <li>
+            <img
+              class="stack-symbol"
+              src="icone-html5.svg"
+              alt=""
+              width="25"
+              height="25"
+            />
+            <span>HTML5</span>
+          </li>
+          <li>
+            <svg
+              class="stack-symbol stack-symbol--css3"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <use href="#icon-css3"></use></svg
+            ><span>CSS</span>
+          </li>
+          <li>
+            <a
+              class="stack-tech-link"
+              href="https://nodejs.org/"
+              target="_blank"
+              rel="noopener"
+              ><svg
+                class="stack-symbol stack-symbol--nodejs"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <use href="#icon-nodejs"></use></svg
+              ><span>Node.js</span
+              ><span class="visually-hidden"
+                >(site oficial, abre em nova aba)</span
+              ></a
+            >
+          </li>
+          <li>
+            <img
+              class="stack-symbol"
+              src="icone-csharp.svg"
+              alt=""
+              width="25"
+              height="25"
+            />
+            <span>C#</span>
+          </li>
+          <li>
+            <svg
+              class="stack-symbol stack-symbol--python"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <use href="#icon-python"></use></svg
+            ><span>Python</span>
+          </li>
+          <li>
+            <svg
+              class="stack-symbol stack-symbol--postgresql"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <use href="#icon-postgresql"></use></svg
+            ><span>PostgreSQL</span>
+          </li>
+          <li>
+            <svg
+              class="stack-symbol stack-symbol--docker"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <use href="#icon-docker"></use></svg
+            ><span>Docker</span>
+          </li>
+          <li>
+            <svg
+              class="stack-symbol stack-symbol--aws"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <use href="#icon-aws"></use></svg
+            ><span>AWS</span>
+          </li>
+          <li>
+            <svg
+              class="stack-symbol stack-symbol--wordpress"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <use href="#icon-wordpress"></use></svg
+            ><span>WordPress</span>
+          </li>
+          <li>
+            <svg
+              class="stack-symbol stack-symbol--figma"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <use href="#icon-figma"></use></svg
+            ><span>Figma</span>
+          </li>
+          <li>
+            <svg
+              class="stack-symbol stack-symbol--search"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <use href="#icon-search"></use></svg
+            ><span>SEO</span>
+          </li>
+          <li>
+            <img
+              class="stack-symbol"
+              src="icone-power-bi.svg"
+              alt=""
+              width="25"
+              height="25"
+            />
+            <span>Power BI</span>
+          </li>
+          <li>
+            <span class="stack-symbol stack-sql-mark" aria-hidden="true"
+              >SQL</span
+            >
+            <span>SQL</span>
+          </li>
+          <li>
+            <img
+              class="stack-symbol stack-symbol--sap"
+              src="icone-sap.svg"
+              alt=""
+              width="30"
+              height="15"
+            />
+            <span>SAP</span>
+          </li>
+          <li>
+            <!-- Ícone Git por Jason Long, CC BY 3.0 — https://git-scm.com/community/logos -->
+            <img
+              class="stack-symbol"
+              src="icone-git.svg"
+              alt=""
+              width="25"
+              height="25"
+            />
+            <span>Git</span>
+          </li>
+        </ul>
+      </section>
+
+      <div class="wrap profile-company">
+        <section class="about" id="sobre" aria-labelledby="sobre-titulo">
+          <div class="section-label" aria-hidden="true"></div>
+          <h2 class="section-heading" id="sobre-titulo">Perfil profissional</h2>
+          <p class="profile-principle">
+            Penso na interface e no código juntos, desde o primeiro rascunho.
+          </p>
+          <p>
+            Na LodgeDev, desenvolvo sites e sistemas web. Começo pelo problema e
+            penso no que vai facilitar a vida de quem usa o produto.
+          </p>
+          <ul class="profile-focus" aria-label="Áreas de atuação">
+            <li>
+              <a href="#ui-ux"
+                ><svg aria-hidden="true" focusable="false">
+                  <use href="#icon-layout"></use></svg
+                >UI/UX</a
+              >
+            </li>
+            <li>
+              <a href="#bi"
+                ><svg aria-hidden="true" focusable="false">
+                  <use href="#icon-chart"></use></svg
+                >BI</a
+              >
+            </li>
+            <li>
+              <a href="#ciberseguranca"
+                ><svg aria-hidden="true" focusable="false">
+                  <use href="#icon-shield"></use></svg
+                >Cibersegurança</a
+              >
+            </li>
+            <li>
+              <a href="#seo"
+                ><svg aria-hidden="true" focusable="false">
+                  <use href="#icon-search"></use></svg
+                >SEO</a
+              >
+            </li>
+          </ul>
+          <p class="secondary-label">Ferramentas complementares</p>
+          <ul class="secondary-stack">
+            <li>Java</li>
+            <li>Power Platform</li>
+          </ul>
+          <p class="location">Rio de Janeiro e região</p>
+          <a class="about-link" href="#atuacao">
+            Ver currículo
+            <svg
+              class="stack-symbol stack-symbol--arrow"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <use href="#icon-arrow"></use>
+            </svg>
+          </a>
+        </section>
+        <section id="empresa" aria-labelledby="empresa-titulo">
+          <div class="section-label" aria-hidden="true"></div>
+          <h2 class="section-heading" id="empresa-titulo">Minha empresa</h2>
+
+          <article
+            class="published-card dark-card"
+            aria-labelledby="lodgedev-titulo"
+          >
+            <div class="company-visual">
+              <img
+                src="lodgedev-miniatura.webp"
+                alt="Imagem de apresentação do site LodgeDev em um notebook."
+                width="800"
+                height="450"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="published-content">
+              <p class="published-status">Desenvolvimento web</p>
+              <h3 id="lodgedev-titulo">LodgeDev</h3>
+              <p class="published-summary">
+                Minha empresa de desenvolvimento de sites, sistemas sob medida e
+                lojas virtuais. Da interface à implementação, o trabalho começa
+                por entender o que cada projeto precisa resolver.
+              </p>
+              <div class="company-actions">
+                <a
+                  class="action primary"
+                  href="https://wa.me/5521986549911?text=Oi%2C%20Lukas!%20Vi%20seu%20portf%C3%B3lio%20e%20queria%20conversar%20sobre%20um%20projeto."
+                  target="_blank"
+                  rel="noopener"
+                  ><svg aria-hidden="true" focusable="false">
+                    <use href="#icon-whatsapp"></use></svg
+                  >WhatsApp<span class="visually-hidden">
+                    do Lukas (abre em nova aba)</span
+                  ></a
+                ><a
+                  class="action"
+                  href="https://lodgedev.com/"
+                  target="_blank"
+                  rel="noopener"
+                  >Visitar site<span class="visually-hidden"
+                    >da LodgeDev (abre em nova aba)</span
+                  ><svg aria-hidden="true" focusable="false">
+                    <use href="#icon-external"></use></svg
+                ></a>
+              </div>
+            </div>
+          </article>
+        </section>
+      </div>
+      <section
+        class="wrap projects-gallery"
+        id="projetos"
+        aria-labelledby="trabalhos-titulo"
+      >
+        <div class="section-label" aria-hidden="true"></div>
+        <h2 class="section-heading" id="trabalhos-titulo">
+          Projetos selecionados
+        </h2>
+        <div class="project-list">
+          <article class="project-card" aria-labelledby="filhas-de-jo-titulo">
+            <img
+              src="filhas-de-jo-rj.jpg"
+              alt="Arte da Visita do Supremo Time 2027 das Filhas de Jó RJ."
+              width="1200"
+              height="630"
+              loading="lazy"
+              decoding="async"
+            />
+            <div>
+              <p class="project-kind">Portal de evento</p>
+              <h3 id="filhas-de-jo-titulo">
+                <img
+                  class="project-mark"
+                  src="marca-filhas-de-jo.png"
+                  alt=""
+                  width="24"
+                  height="24"
+                  loading="lazy"
+                />
+                Filhas de Jó RJ
+              </h3>
+              <p class="published-summary">
+                No portal da Visita do Supremo Time 2027, as participantes podem
+                consultar a programação e fazer a inscrição.
+              </p>
+              <ul class="project-tools" aria-label="Tecnologias da interface">
+                <li>HTML5</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+              </ul>
+              <details class="project-flow">
+                <summary>
+                  <svg aria-hidden="true" focusable="false">
+                    <use href="#icon-layout"></use>
+                  </svg>
+                  Como funciona o portal
+                  <svg
+                    class="project-flow-chevron"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <use href="#icon-down"></use>
+                  </svg>
+                </summary>
+                <dl class="project-case-notes">
+                  <div>
+                    <dt>Desafio</dt>
+                    <dd>
+                      Reunir as informações da Visita do Supremo Time 2027 e
+                      facilitar a inscrição das participantes.
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>Decisão de interface</dt>
+                    <dd>
+                      Dar acesso à programação e à inscrição por caminhos
+                      separados na página inicial.
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>Entrega</dt>
+                    <dd>
+                      Portal do evento com programação e página dedicada à
+                      inscrição on-line.
+                    </dd>
+                  </div>
+                </dl>
+              </details>
+              <a
+                class="project-link"
+                href="https://filhasdejorj.com/"
+                target="_blank"
+                rel="noopener"
+              >
+                Visitar site
+                <span class="visually-hidden"
+                  >das Filhas de Jó RJ (abre em nova aba)</span
+                >
+                <svg aria-hidden="true" focusable="false">
+                  <use href="#icon-external"></use>
+                </svg>
+              </a>
+            </div>
+          </article>
+          <article class="project-card" aria-labelledby="erp-cabana-titulo">
+            <img
+              src="erp-cabana.webp"
+              alt="Tela inicial do sistema de gestão Cabana de Pai Oxalá."
+              width="800"
+              height="597"
+              loading="lazy"
+              decoding="async"
+            />
+            <div>
+              <p class="project-kind">Sistema de gestão</p>
+              <h3 id="erp-cabana-titulo">ERP Cabana de Pai Oxalá</h3>
+              <p class="published-summary">
+                Reúne a rotina administrativa da Cabana em um painel.
+              </p>
+              <ul class="project-tools" aria-label="Recursos do sistema">
+                <li>Cadastro de membros</li>
+                <li>Financeiro</li>
+                <li>Agenda</li>
+              </ul>
+            </div>
+          </article>
+          <article class="project-card" aria-labelledby="coton-sauvage-titulo">
+            <img
+              src="coton-sauvage.webp"
+              alt="Prévia do catálogo da loja Coton Sauvage em um notebook."
+              width="800"
+              height="717"
+              loading="lazy"
+              decoding="async"
+            />
+            <div>
+              <p class="project-kind">E-commerce</p>
+              <h3 id="coton-sauvage-titulo">
+                <img
+                  class="project-mark"
+                  src="marca-coton-sauvage.png"
+                  alt=""
+                  width="24"
+                  height="24"
+                  loading="lazy"
+                />
+                Coton Sauvage
+              </h3>
+              <p class="published-summary">
+                Loja de enxoval sob medida com catálogo e orçamento pelo
+                WhatsApp.
+              </p>
+              <ul class="project-tools" aria-label="Tecnologias e integração">
+                <li>React</li>
+                <li>Tailwind CSS</li>
+                <li>Mercado Pago</li>
+              </ul>
+              <details class="project-flow">
+                <summary id="fluxo-coton">
+                  <svg aria-hidden="true" focusable="false">
+                    <use href="#icon-layout"></use>
+                  </svg>
+                  Fluxo de orçamento
+                  <svg
+                    class="project-flow-chevron"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <use href="#icon-down"></use>
+                  </svg>
+                </summary>
+                <dl class="project-case-notes">
+                  <div>
+                    <dt>Desafio</dt>
+                    <dd>
+                      Cotar um enxoval sob medida depende da coleção e das
+                      dimensões de cada peça.
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>Decisão de interface</dt>
+                    <dd>
+                      Colocar o formulário entre o catálogo e o WhatsApp para a
+                      loja já receber as informações do pedido.
+                    </dd>
+                  </div>
+                </dl>
+                <h4 class="project-case-delivery">
+                  Fluxo entregue pela LodgeDev
+                </h4>
+                <ol aria-label="Etapas do orçamento">
+                  <li>Escolher a coleção no catálogo.</li>
+                  <li>Informar as medidas no formulário.</li>
+                  <li>Pedir o orçamento pelo WhatsApp.</li>
+                </ol>
+                <a class="project-link flow-contact" href="#contato">
+                  Conversar sobre uma loja
+                  <svg aria-hidden="true" focusable="false">
+                    <use href="#icon-arrow"></use>
+                  </svg>
+                </a>
+              </details>
+              <a
+                class="project-link"
+                href="https://cotonsauvage.com.br/"
+                target="_blank"
+                rel="noopener"
+              >
+                Visitar site
+                <span class="visually-hidden"
+                  >da Coton Sauvage (abre em nova aba)</span
+                >
+                <svg aria-hidden="true" focusable="false">
+                  <use href="#icon-external"></use>
+                </svg>
+              </a>
+            </div>
+          </article>
+          <article
+            class="project-card bi-case dark-card"
+            id="radar-de-vendas"
+            aria-labelledby="radar-de-vendas-titulo"
+            tabindex="-1"
+          >
+            <div class="bi-case-copy">
+              <p class="project-kind">
+                Business Intelligence · Dados simulados
+              </p>
+              <h3 id="radar-de-vendas-titulo">Radar de Vendas</h3>
+              <p class="published-summary">
+                Um painel interativo para acompanhar receita e metas de um
+                e-commerce e descobrir quais categorias, canais e regiões mais
+                vendem.
+              </p>
+              <ul
+                class="project-tools"
+                aria-label="Área e tecnologias da demonstração"
+              >
+                <li>BI</li>
+                <li>JavaScript</li>
+                <li>SVG</li>
+              </ul>
+              <a class="action primary" data-theme-link href="projeto-bi.html">
+                Abrir painel de BI
+                <svg aria-hidden="true" focusable="false">
+                  <use href="#icon-arrow"></use>
+                </svg>
+              </a>
+            </div>
+            <img
+              src="radar-vendas-capa.svg"
+              alt=""
+              width="720"
+              height="320"
+              loading="lazy"
+              decoding="async"
+            />
+          </article>
+          <article class="project-card" aria-labelledby="viaje-ja-titulo">
+            <img
+              src="viaje-ja.webp"
+              alt="Prévia do catálogo de destinos do Viaje Já em um notebook."
+              width="800"
+              height="633"
+              loading="lazy"
+              decoding="async"
+            />
+            <div>
+              <p class="project-kind">Site institucional</p>
+              <h3 id="viaje-ja-titulo">Viaje Já</h3>
+              <p class="published-summary">
+                Página de apresentação da agência para explorar os destinos no
+                celular e no computador.
+              </p>
+              <ul class="project-tools" aria-label="Recursos do site">
+                <li>Catálogo de destinos</li>
+                <li>Layout responsivo</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+        <div class="projects-actions">
+          <a class="action primary" href="#contato">
+            Falar sobre um projeto
+            <svg aria-hidden="true" focusable="false">
+              <use href="#icon-arrow"></use>
+            </svg>
+          </a>
+          <a
+            class="action"
+            href="https://lodgedev.com/#portfolio"
+            target="_blank"
+            rel="noopener"
+          >
+            Ver trabalhos na LodgeDev
+            <span class="visually-hidden">(abre em nova aba)</span>
+            <svg aria-hidden="true" focusable="false">
+              <use href="#icon-external"></use>
+            </svg>
+          </a>
+        </div>
+      </section>
+      <section
+        class="wrap services"
+        id="servicos"
+        aria-labelledby="servicos-titulo"
+      >
+        <div class="section-label" aria-hidden="true"></div>
+        <h2 class="section-heading" id="servicos-titulo">Como posso ajudar</h2>
+        <div class="service-list">
+          <article class="service-item">
+            <span class="practice-icon"
+              ><svg aria-hidden="true" focusable="false">
+                <use href="#icon-layout"></use></svg
+            ></span>
+            <h3>UI/UX e design</h3>
+            <p>
+              Desenho fluxos e protótipos no Figma para validar a navegação
+              antes de desenvolver.
+            </p>
+            <a class="project-link service-case-link" href="#fluxo-coton">
+              Ver o fluxo da Coton Sauvage
+              <svg aria-hidden="true" focusable="false">
+                <use href="#icon-arrow"></use>
+              </svg>
+            </a>
+          </article>
+          <article class="service-item">
+            <span class="practice-icon"
+              ><svg aria-hidden="true" focusable="false">
+                <use href="#icon-web"></use></svg
+            ></span>
+            <h3>Front-end e sites</h3>
+            <p>
+              Desenvolvo sites, lojas e interfaces que se adaptam ao celular,
+              com atenção ao desempenho e ao SEO.
+            </p>
+          </article>
+          <article class="service-item">
+            <span class="practice-icon"
+              ><svg aria-hidden="true" focusable="false">
+                <use href="#icon-database"></use></svg
+            ></span>
+            <h3>Back-end e sistemas</h3>
+            <p>
+              Construo APIs e sistemas que conectam dados, integram ferramentas
+              e automatizam tarefas da operação.
+            </p>
+          </article>
+        </div>
+      </section>
+      <section
+        class="wrap practice"
+        id="atuacao"
+        aria-labelledby="atuacao-titulo"
+      >
+        <div class="practice-intro">
+          <div class="section-label" aria-hidden="true"></div>
+          <h2 class="section-heading" id="atuacao-titulo">
+            Currículo profissional
+          </h2>
+
+          <p class="cv-name">Lukas Martins Oliveira</p>
+          <p>Desenvolvedor Full Stack</p>
+          <p><a href="#empresa">À frente da LodgeDev</a></p>
+          <p>Rio de Janeiro e região</p>
+          <a
+            class="cv-contact"
+            href="https://wa.me/5521986549911"
+            target="_blank"
+            rel="noopener"
+            ><svg aria-hidden="true" focusable="false">
+              <use href="#icon-whatsapp"></use></svg
+            >WhatsApp do Lukas<span class="visually-hidden"
+              >(abre em nova aba)</span
+            ></a
+          >
+        </div>
+        <div class="practice-grid">
+          <div class="practice-item">
+            <span class="practice-icon"
+              ><svg aria-hidden="true" focusable="false">
+                <use href="#icon-web"></use></svg
+            ></span>
+            <h3>Desenvolvimento front-end</h3>
+            <p>
+              Interfaces com React, Next.js e Angular, usando TypeScript,
+              JavaScript e CSS.
+            </p>
+          </div>
+          <div class="practice-item">
+            <span class="practice-icon"
+              ><svg aria-hidden="true" focusable="false">
+                <use href="#icon-database"></use></svg
+            ></span>
+            <h3>APIs e bancos de dados</h3>
+            <p>
+              Regras de negócio e integrações com Node.js, Python e PostgreSQL.
+            </p>
+          </div>
+          <div class="practice-item" id="ui-ux" tabindex="-1">
+            <span class="practice-icon"
+              ><svg aria-hidden="true" focusable="false">
+                <use href="#icon-layout"></use></svg
+            ></span>
+            <h3>UI/UX Design</h3>
+            <p>
+              No Figma, organizo fluxos, esboço as telas em wireframes e testo a
+              navegação com protótipos.
+            </p>
+          </div>
+          <div class="practice-item" id="seo" tabindex="-1">
+            <span class="practice-icon"
+              ><svg aria-hidden="true" focusable="false">
+                <use href="#icon-search"></use></svg
+            ></span>
+            <h3>SEO e performance</h3>
+            <p>
+              Estrutura semântica, metadados e desempenho para facilitar a
+              indexação e melhorar a experiência de navegação.
+            </p>
+          </div>
+          <div class="practice-item" id="wordpress" tabindex="-1">
+            <span class="practice-icon"
+              ><svg aria-hidden="true" focusable="false">
+                <use href="#icon-content"></use></svg
+            ></span>
+            <h3>WordPress</h3>
+            <p>
+              Sites institucionais e páginas com edição de conteúdo no
+              WordPress.
+            </p>
+          </div>
+          <div class="practice-item" id="ciberseguranca" tabindex="-1">
+            <span class="practice-icon"
+              ><svg aria-hidden="true" focusable="false">
+                <use href="#icon-shield"></use></svg
+            ></span>
+            <h3>Cibersegurança</h3>
+            <p>
+              Boas práticas de autenticação, controle de acesso e proteção de
+              dados em aplicações web.
+            </p>
+          </div>
+          <div class="practice-item">
+            <span class="practice-icon"
+              ><svg aria-hidden="true" focusable="false">
+                <use href="#icon-cloud"></use></svg
+            ></span>
+            <h3>Ambientes e nuvem</h3>
+            <p>Ambientes reproduzíveis com Docker e experiência com AWS.</p>
+          </div>
+          <div class="practice-item" id="bi" tabindex="-1">
+            <span class="practice-icon"
+              ><svg aria-hidden="true" focusable="false">
+                <use href="#icon-chart"></use></svg
+            ></span>
+            <h3>Business Intelligence e automação</h3>
+            <p>
+              Análise de dados e indicadores com SQL e Power BI. Automação de
+              processos com Power Platform.
+            </p>
+            <a class="bi-project-link" href="#radar-de-vendas"
+              >Ver projeto de BI</a
+            >
+          </div>
+        </div>
+      </section>
+      <section
+        class="wrap contact"
+        id="contato"
+        aria-labelledby="contato-titulo"
+        tabindex="-1"
+      >
+        <div>
+          <div class="section-label" aria-hidden="true"></div>
+          <h2 class="section-heading" id="contato-titulo">
+            Vamos conversar sobre seu projeto?
+          </h2>
+          <p>Me conte o que você quer construir e em que etapa está.</p>
+        </div>
+        <div class="actions">
+          <a
+            class="action primary"
+            href="https://wa.me/5521986549911?text=Oi%2C%20Lukas!%20Vi%20seu%20portf%C3%B3lio%20e%20queria%20conversar%20sobre%20um%20projeto."
+            target="_blank"
+            rel="noopener"
+          >
+            <svg aria-hidden="true" focusable="false">
+              <use href="#icon-whatsapp"></use>
+            </svg>
+            Conversar pelo WhatsApp<span class="visually-hidden">
+              com Lukas (abre em nova aba)</span
+            >
+          </a>
+          <a
+            class="action"
+            href="https://www.linkedin.com/in/lukas-martins-oliveira-a4b640220/"
+            target="_blank"
+            rel="noopener"
+          >
+            LinkedIn<span class="visually-hidden"> (abre em nova aba)</span>
+            <svg aria-hidden="true" focusable="false">
+              <use href="#icon-external"></use>
+            </svg>
+          </a>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="wrap footer-inner">
+        <p>Lukas Martins Oliveira · Portfólio profissional</p>
+        <a href="#inicio">Voltar ao início ↑</a>
+      </div>
+    </footer>
+
+    <button
+      class="assistente-launcher"
+      id="abrir-assistente"
+      type="button"
+      aria-haspopup="dialog"
+      aria-controls="assistente"
+      hidden
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path
+          d="M5 4.5h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H10l-5 3v-3a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2Z"
+        />
+        <path d="M8 11h.01m4 0h.01m4 0h.01" />
+      </svg>
+      Assistente
+    </button>
+
+    <dialog
+      class="assistente"
+      id="assistente"
+      aria-labelledby="assistente-titulo"
+    >
+      <header class="assistente-header">
+        <div>
+          <h2 id="assistente-titulo">Assistente do portfólio</h2>
+          <p>Projetos, tecnologia e um quiz rápido</p>
+        </div>
+        <button
+          class="assistente-fechar"
+          type="button"
+          aria-label="Fechar assistente"
+          autofocus
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="m6 6 12 12M18 6 6 18" />
+          </svg>
+        </button>
+      </header>
+      <div
+        class="assistente-conversa"
+        role="log"
+        aria-label="Conversa com o assistente"
+      >
+        <p class="assistente-mensagem">
+          Oi! Quer conhecer os projetos do Lukas, explorar as tecnologias ou
+          testar seus conhecimentos num quiz?
+        </p>
+      </div>
+      <div
+        class="assistente-atalhos"
+        aria-label="Perguntas rápidas"
+        role="group"
+      >
+        <button type="button" data-assunto="projetos">Ver projetos</button>
+        <button type="button" data-assunto="bi">Painéis de BI</button>
+        <button type="button" data-assunto="quiz">Jogar quiz</button>
+      </div>
+      <form class="assistente-formulario">
+        <label class="visually-hidden" for="pergunta-assistente"
+          >Sua pergunta</label
+        >
+        <input
+          id="pergunta-assistente"
+          type="text"
+          placeholder="Escreva sua pergunta"
+          maxlength="240"
+          autocomplete="off"
+          required
+        />
+        <button type="submit" aria-label="Enviar pergunta">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M4 12h15m-6-6 6 6-6 6" />
+          </svg>
+        </button>
+      </form>
+      <p class="assistente-privacidade">
+        As perguntas podem ser processadas pelo Google Gemini. Evite enviar
+        dados pessoais.
+      </p>
+      <p class="assistente-estado" role="status" hidden></p>
+      <a
+        class="assistente-whatsapp"
+        href="https://wa.me/5521986549911"
+        target="_blank"
+        rel="noopener"
+      >
+        <svg aria-hidden="true" focusable="false">
+          <use href="#icon-whatsapp"></use>
+        </svg>
+        <span
+          >WhatsApp do Lukas
+          <span class="assistente-numero">(21) 98654-9911</span></span
+        >
+        <span class="visually-hidden"> (abre em nova aba)</span>
+      </a>
+    </dialog>
+
+    <script src="portfolio-lukas.js"></script>
+    <script type="module" src="assistente-portfolio.js"></script>
+  </body>
+</html>
